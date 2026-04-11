@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李恩伟 · Li Enwei | 个人简历</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════
+颜色变量 — 夜间模式 (默认)
+═══════════════════════════════════════ */
+[data-theme="dark"] {
+--bg:          #050a0f;
+--bg2:         #0d1821;
+--bg3:         #111d2a;
+--text:        #e2f0ff;
+--text-dim:    #7a9abb;
+--text-muted:  #4a6a8a;
+--accent:      #00d4ff;
+--accent2:     #7b2fff;
+--accent3:     #00ff9d;
+--border:      rgba(0,212,255,0.18);
+--border-soft: rgba(0,212,255,0.08);
+--nav-bg:      rgba(5,10,15,0.85);
+--card-bg:     #0d1821;
+--card-hover:  #111d2a;
+--glow:        0 0 20px rgba(0,212,255,0.3);
+--shadow:      0 8px 32px rgba(0,0,0,0.4);
+--orb1:        rgba(0,212,255,0.06);
+--orb2:        rgba(123,47,255,0.08);
+--orb3:        rgba(0,255,157,0.05);
+--grid-line:   rgba(0,212,255,0.04);
+--scanline:    rgba(0,0,0,0.04);
+--name-grad:   linear-gradient(135deg, #ffffff 0%, #00d4ff 50%, #7b2fff 100%);
+}
+
+/* ═══════════════════════════════════════
+颜色变量 — 日间模式
+═══════════════════════════════════════ */
+[data-theme="light"] {
+--bg:          #f0f4f8;
+--bg2:         #ffffff;
+--bg3:         #e8eef4;
+--text:        #0d1821;
+--text-dim:    #3a5a7a;
+--text-muted:  #6a8aaa;
+--accent:      #0099cc;
+--accent2:     #6020cc;
+--accent3:     #009960;
+--border:      rgba(0,153,204,0.25);
+--border-soft: rgba(0,153,204,0.1);
+--nav-bg:      rgba(240,244,248,0.92);
+--card-bg:     #ffffff;
+--card-hover:  #f5f9fc;
+--glow:        0 0 20px rgba(0,153,204,0.2);
+--shadow:      0 8px 32px rgba(0,0,0,0.1);
+--orb1:        rgba(0,153,204,0.08);
+--orb2:        rgba(96,32,204,0.06);
+--orb3:        rgba(0,153,102,0.06);
+--grid-line:   rgba(0,153,204,0.05);
+--scanline:    rgba(0,0,0,0.01);
+--name-grad:   linear-gradient(135deg, #0d1821 0%, #0099cc 50%, #6020cc 100%);
+}
+
+/* ═══════════════════════════════════════
+Base
+═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+scroll-behavior: smooth;
+background: var(--bg);
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+text-rendering: optimizeLegibility;
+transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Grid background */
+body::before {
+content: '';
+position: fixed; inset: 0; z-index: 0; pointer-events: none;
+background-image:
+linear-gradient(var(--grid-line) 1px, transparent 1px),
+linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+background-size: 60px 60px;
+}
+
+/* Scanline */
+body::after {
+content: '';
+position: fixed; inset: 0; z-index: 999; pointer-events: none;
+background: repeating-linear-gradient(
+0deg, transparent, transparent 2px,
+var(--scanline) 2px, var(--scanline) 4px
+);
+}
+
+/* Orbs */
+.orb {
+position: fixed; border-radius: 50%; filter: blur(80px);
+pointer-events: none; z-index: 0;
+animation: orb-float 8s ease-in-out infinite;
+transition: background 0.4s ease;
+}
+.orb-1 { width: 400px; height: 400px; background: var(--orb1); top: -100px; right: -100px; }
+.orb-2 { width: 300px; height: 300px; background: var(--orb2); bottom: 20%; left: -50px; animation-delay: 3s; }
+.orb-3 { width: 200px; height: 200px; background: var(--orb3); top: 50%; right: 10%; animation-delay: 6s; }
+@keyframes orb-float { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
+
+/* ═══════════════════════════════════════
+Top Controls (lang + theme)
+═══════════════════════════════════════ */
+.top-controls {
+position: fixed; top: 20px; right: 20px; z-index: 1000;
+display: flex; align-items: center; gap: 8px;
+}
+
+/* Language toggle */
+.lang-toggle {
+display: flex; gap: 3px;
+background: var(--card-bg);
+border: 1px solid var(--border);
+border-radius: 50px; padding: 4px;
+backdrop-filter: blur(12px);
+box-shadow: var(--shadow);
+transition: background 0.4s ease, border-color 0.4s ease;
+}
+.lang-btn {
+padding: 7px 16px; border-radius: 50px; border: none; cursor: pointer;
+font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px;
+transition: all 0.3s ease; background: transparent; color: var(--text-dim);
+}
+.lang-btn.active {
+background: var(--accent); color: #fff;
+box-shadow: 0 0 12px rgba(0,212,255,0.4); font-weight: 700;
+}
+
+/* Theme toggle button */
+.theme-btn {
+width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+background: var(--card-bg); cursor: pointer;
+display: flex; align-items: center; justify-content: center;
+font-size: 16px; transition: all 0.3s ease;
+backdrop-filter: blur(12px); box-shadow: var(--shadow);
+color: var(--text);
+}
+.theme-btn:hover { border-color: var(--accent); box-shadow: var(--glow); transform: rotate(20deg); }
+
+/* ═══════════════════════════════════════
+Nav
+═══════════════════════════════════════ */
+nav {
+position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+padding: 18px 40px;
+display: flex; align-items: center; gap: 12px;
+background: var(--nav-bg);
+border-bottom: 1px solid var(--border);
+backdrop-filter: blur(20px);
+transition: background 0.4s ease, border-color 0.4s ease;
+}
+.nav-logo {
+font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 900;
+color: var(--accent); letter-spacing: 2px;
+text-shadow: 0 0 20px rgba(0,212,255,0.3);
+}
+.nav-cv-btn {
+margin-left: auto;
+display: inline-flex; align-items: center; gap: 8px;
+padding: 8px 20px;
+color: var(--accent); border: 1px solid var(--accent);
+border-radius: 8px; background: transparent;
+font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px;
+text-decoration: none; cursor: pointer; transition: all 0.3s ease;
+white-space: nowrap;
+}
+.nav-cv-btn:hover { background: var(--border-soft); box-shadow: var(--glow); transform: translateY(-1px); }
+
+main { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════
+Hero
+═══════════════════════════════════════ */
+.hero {
+min-height: 100vh; display: flex; align-items: center;
+padding: 120px 80px 80px; position: relative; overflow: hidden;
+background: var(--bg);
+transition: background 0.4s ease;
+}
+.hero-content { max-width: 700px; }
+
+.hero-tag {
+display: inline-flex; align-items: center; gap: 8px;
+border: 1px solid var(--accent); border-radius: 50px; padding: 6px 16px;
+font-family: 'Space Mono', monospace; font-size: 11px;
+color: var(--accent); letter-spacing: 2px;
+margin-bottom: 32px; animation: fadeInUp 0.6s ease both;
+}
+
+.hero-name {
+font-family: 'Orbitron', monospace;
+font-size: clamp(48px, 8vw, 90px); font-weight: 900; line-height: 1;
+margin-bottom: 8px; animation: fadeInUp 0.6s 0.1s ease both;
+background: var(--name-grad);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+transition: background 0.4s ease;
+}
+.hero-name-en {
+font-family: 'Space Mono', monospace;
+font-size: clamp(14px, 2.5vw, 20px); color: var(--text-dim);
+letter-spacing: 4px; margin-bottom: 24px; animation: fadeInUp 0.6s 0.15s ease both;
+}
+.hero-title {
+font-size: clamp(18px, 3vw, 24px); font-weight: 500; color: var(--accent3);
+margin-bottom: 24px; animation: fadeInUp 0.6s 0.2s ease both; letter-spacing: 1px;
+}
+
+.hero-meta {
+display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px;
+animation: fadeInUp 0.6s 0.3s ease both;
+}
+.meta-chip {
+display: flex; align-items: center; gap: 8px;
+background: var(--card-bg); border: 1px solid var(--border);
+border-radius: 8px; padding: 8px 14px;
+font-size: 13px; color: var(--text-dim);
+transition: all 0.3s ease;
+}
+.meta-chip:hover { border-color: var(--accent); color: var(--accent); box-shadow: var(--glow); transform: translateY(-2px); }
+
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeInUp 0.6s 0.4s ease both; }
+
+.btn-primary {
+display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+background: var(--accent); color: #050a0f; border: none; border-radius: 8px;
+font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px;
+text-decoration: none; cursor: pointer; transition: all 0.3s ease;
+box-shadow: 0 0 20px rgba(0,212,255,0.35);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 36px rgba(0,212,255,0.55); }
+
+.btn-secondary {
+display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+background: transparent; color: var(--text); border: 1px solid var(--border);
+border-radius: 8px;
+font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;
+text-decoration: none; cursor: pointer; transition: all 0.3s ease;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+.btn-download-cv {
+display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+background: transparent; color: var(--accent3); border: 1px solid var(--accent3);
+border-radius: 8px;
+font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;
+text-decoration: none; cursor: pointer; transition: all 0.3s ease;
+}
+.btn-download-cv:hover { background: rgba(0,255,157,0.07); box-shadow: 0 0 20px rgba(0,255,157,0.25); transform: translateY(-3px); }
+.dl-arrow { animation: bounce-down 1.4s ease-in-out infinite; display: inline-block; }
+@keyframes bounce-down { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+
+/* Hero visual */
+.hero-visual {
+position: absolute; right: 80px; top: 50%; transform: translateY(-50%);
+width: 320px; height: 320px; animation: fadeInUp 0.6s 0.5s ease both;
+}
+.avatar-ring { width: 320px; height: 320px; border-radius: 50%; border: 1px solid var(--border); position: absolute; animation: spin-slow 20s linear infinite; }
+.avatar-ring::before { content: ''; position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
+.avatar-ring-2 { width: 280px; height: 280px; border-radius: 50%; border: 1px solid var(--border); position: absolute; top: 20px; left: 20px; animation: spin-slow 15s linear infinite reverse; }
+.avatar-placeholder {
+width: 230px; height: 230px; border-radius: 50%; position: absolute; top: 45px; left: 45px;
+background: var(--card-bg); border: 3px solid var(--accent);
+box-shadow: 0 0 40px rgba(0,212,255,0.35);
+display: flex; align-items: center; justify-content: center;
+font-family: 'Orbitron', monospace; font-size: 48px; font-weight: 900;
+color: var(--accent);
+}
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ═══════════════════════════════════════
+Section 通用
+═══════════════════════════════════════ */
+section {
+padding: 100px 80px; position: relative;
+background: var(--bg);
+transition: background 0.4s ease;
+}
+section.alt { background: var(--bg2); }
+
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 60px; }
+.section-label .num {
+font-family: 'Orbitron', monospace; font-size: 11px;
+color: var(--accent); letter-spacing: 2px; opacity: 0.6;
+}
+.section-label h2 {
+font-family: 'Orbitron', monospace; font-size: clamp(22px, 4vw, 38px);
+font-weight: 700; letter-spacing: 1px; color: var(--text);
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+
+/* ═══════════════════════════════════════
+Skills
+═══════════════════════════════════════ */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+.skill-card {
+background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px;
+transition: all 0.4s ease; position: relative; overflow: hidden;
+}
+.skill-card::before {
+content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+background: linear-gradient(90deg, var(--accent), var(--accent2));
+transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.skill-card:hover::before { transform: scaleX(1); }
+.skill-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow), var(--glow); background: var(--card-hover); }
+.skill-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+.skill-card h3 { font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
+.skill-card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.8; }
+
+/* Language bars */
+.lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 40px; }
+.lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.lang-name { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+.lang-level { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 1px; }
+.lang-bar { height: 6px; background: var(--bg3); border-radius: 50px; overflow: hidden; border: 1px solid var(--border); }
+.lang-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 0 8px var(--accent); animation: bar-fill 1.5s ease both; animation-play-state: paused; }
+.lang-fill.animate { animation-play-state: running; }
+@keyframes bar-fill { from { width: 0; } to { width: var(--target-width); } }
+
+/* ═══════════════════════════════════════
+Experience
+═══════════════════════════════════════ */
+.exp-timeline { position: relative; padding-left: 40px; }
+.exp-timeline::before {
+content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+}
+.exp-item { position: relative; margin-bottom: 56px; }
+.exp-item::before {
+content: ''; position: absolute; left: -44px; top: 6px;
+width: 10px; height: 10px; border-radius: 50%;
+background: var(--accent); border: 2px solid var(--bg);
+box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(0,212,255,0.4);
+}
+.exp-company {
+font-family: 'Space Mono', monospace; font-size: 10px;
+color: var(--accent); letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase;
+}
+.exp-role {
+font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+font-size: clamp(17px, 2.2vw, 22px); font-weight: 700; margin-bottom: 18px; color: var(--text);
+}
+.exp-bullets { list-style: none; }
+.exp-bullets li { display: flex; gap: 12px; margin-bottom: 10px; font-size: 14px; color: var(--text-dim); line-height: 1.8; }
+.exp-bullets li::before { content: '▸'; color: var(--accent3); flex-shrink: 0; margin-top: 2px; }
+
+/* ═══════════════════════════════════════
+About
+═══════════════════════════════════════ */
+.intro-box {
+background: var(--card-bg); border: 1px solid var(--border);
+border-left: 3px solid var(--accent);
+border-radius: 0 16px 16px 0; padding: 36px 40px;
+font-size: 15px; line-height: 2; color: var(--text-dim);
+position: relative;
+transition: background 0.4s ease;
+}
+.intro-box::before {
+content: '"'; position: absolute; top: 8px; left: 18px;
+font-size: 72px; color: var(--border); font-family: serif; line-height: 1;
+}
+
+/* ═══════════════════════════════════════
+Contact
+═══════════════════════════════════════ */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
+.contact-card {
+display: flex; align-items: center; gap: 16px;
+background: var(--card-bg); border: 1px solid var(--border);
+border-radius: 12px; padding: 22px;
+text-decoration: none; color: inherit;
+transition: all 0.3s ease; cursor: pointer;
+}
+.contact-card:hover { border-color: var(--accent); box-shadow: var(--glow); transform: translateY(-2px); background: var(--card-hover); }
+.contact-icon {
+width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+background: var(--bg3); border: 1px solid var(--border);
+display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.contact-info label {
+display: block; font-family: 'Space Mono', monospace; font-size: 9px;
+color: var(--text-muted); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase; cursor: pointer;
+}
+.contact-info span { font-size: 15px; color: var(--text); font-weight: 500; }
+
+/* CV Download card */
+.cv-download-card {
+margin-top: 28px;
+display: flex; align-items: center; justify-content: space-between; gap: 20px;
+background: var(--card-bg); border: 1px solid var(--accent);
+border-radius: 16px; padding: 26px 30px;
+text-decoration: none; color: inherit; transition: all 0.3s ease; cursor: pointer;
+}
+.cv-download-card:hover { box-shadow: var(--glow); transform: translateY(-2px); background: var(--card-hover); }
+.cv-download-card-left { display: flex; align-items: center; gap: 18px; }
+.cv-download-icon {
+width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+background: var(--bg3); border: 1px solid var(--border);
+display: flex; align-items: center; justify-content: center; font-size: 24px;
+}
+.cv-download-title { font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cv-download-sub { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 1px; }
+.cv-download-btn {
+display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px;
+background: var(--accent); color: #050a0f;
+border-radius: 8px; font-family: 'Space Mono', monospace;
+font-size: 12px; font-weight: 700; letter-spacing: 1px; white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════
+Footer
+═══════════════════════════════════════ */
+footer {
+padding: 36px 80px; border-top: 1px solid var(--border);
+display: flex; justify-content: space-between; align-items: center;
+flex-wrap: wrap; gap: 12px;
+background: var(--bg2);
+transition: background 0.4s ease;
+}
+.footer-text { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+
+/* ═══════════════════════════════════════
+Animations & Utils
+═══════════════════════════════════════ */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+Responsive
+═══════════════════════════════════════ */
+@media (max-width: 900px) {
+section { padding: 60px 20px; }
+.hero { padding: 100px 20px 60px; }
+.hero-visual { display: none; }
+nav { padding: 14px 20px; }
+footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+.cv-download-card { flex-direction: column; align-items: flex-start; }
+.top-controls { top: 14px; right: 14px; gap: 6px; }
+.lang-btn { padding: 6px 12px; font-size: 9px; }
+.theme-btn { width: 34px; height: 34px; font-size: 14px; }
+}
+</style>
+
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="top-controls">
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('zh')" id="btn-zh">中文</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" title="切换日间/夜间模式">🌙</button>
+</div>
+
+<nav>
+  <div class="nav-logo">LEW</div>
+  <a href="李恩伟_CV.pdf" download="李恩伟_CV.pdf" class="nav-cv-btn">
+    ⬇ <span data-zh="下载 CV" data-en="Download CV">下载 CV</span>
+  </a>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag" data-zh="中缅翻译 · 曼谷" data-en="ZH-MY Professional Interpreter · Bangkok">中缅翻译 · 曼谷</div>
+      <div class="hero-name">李恩伟</div>
+      <div class="hero-name-en">LI ENWEI</div>
+      <div class="hero-title" data-zh="个人简历" data-en="Personal Resume">个人简历</div>
+
+      <div class="hero-meta">
+        <div class="meta-chip"><span>📍</span> <span data-zh="泰国·曼谷" data-en="Bangkok, Thailand">泰国·曼谷</span></div>
+        <div class="meta-chip"><span>🌐</span> <span data-zh="缅甸国籍" data-en="Myanmar Nationality">缅甸国籍</span></div>
+        <div class="meta-chip"><span>📋</span> <span data-zh="合法工作签证" data-en="Legal Work Permit">合法工作签证</span></div>
+        <div class="meta-chip"><span>🚗</span> <span data-zh="持泰国驾照" data-en="Thai Driver's License">持泰国驾照</span></div>
+        <div class="meta-chip"><span>💼</span> <span data-zh="37岁 · 已婚" data-en="37 yrs · Married">37岁 · 已婚</span></div>
+        <div class="meta-chip"><span>💰</span> <span data-zh="期望薪资 25,000+ THB/月" data-en="Expected 25,000+ THB/mo">期望薪资 25,000+ THB/月</span></div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="tel:0826039244" class="btn-primary">📞 <span data-zh="立即联系" data-en="Contact Now">立即联系</span></a>
+        <a href="#experience" class="btn-secondary">→ <span data-zh="查看经历" data-en="View Experience">查看经历</span></a>
+        <a href="李恩伟_CV.pdf" download="李恩伟_CV.pdf" class="btn-download-cv">
+          <span class="dl-arrow">⬇</span>
+          <span data-zh="下载简历 PDF" data-en="Download CV PDF">下载简历 PDF</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="avatar-ring"></div>
+      <div class="avatar-ring-2"></div>
+      <div class="avatar-placeholder">李</div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="section-label">
+      <span class="num">01</span>
+      <h2 data-zh="语言与技能" data-en="LANGUAGES & SKILLS">语言与技能</h2>
+    </div>
+
+    <div class="lang-grid reveal">
+      <div class="lang-item">
+        <div class="lang-header">
+          <div class="lang-name" data-zh="缅甸语" data-en="Burmese">缅甸语</div>
+          <div class="lang-level" data-zh="母语" data-en="NATIVE">母语</div>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" style="--target-width:100%;width:0"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-header">
+          <div class="lang-name" data-zh="中文（普通话）" data-en="Chinese (Mandarin)">中文（普通话）</div>
+          <div class="lang-level" data-zh="流利" data-en="FLUENT">流利</div>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" style="--target-width:90%;width:0"></div></div>
+      </div>
+    </div>
+
+    <div class="skills-grid" style="margin-top:56px">
+      <div class="skill-card reveal">
+        <span class="skill-icon">🗣️</span>
+        <h3 data-zh="现场翻译" data-en="ON-SITE INTERPRETATION">现场翻译</h3>
+        <p data-zh="精通中缅双语现场口译，能精准传达技术要求与管理指令，消除语言障碍。" data-en="Expert in Chinese-Burmese on-site interpretation, accurately conveying technical requirements and management directives.">精通中缅双语现场口译，能精准传达技术要求与管理指令，消除语言障碍。</p>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🌉</span>
+        <h3 data-zh="跨文化协调" data-en="CROSS-CULTURAL COORDINATION">跨文化协调</h3>
+        <p data-zh="具备丰富的中缅双方工作对接经验，深入理解两国职场文化与沟通方式。" data-en="Rich experience bridging Chinese and Myanmar work cultures, with deep understanding of both workplace dynamics.">具备丰富的中缅双方工作对接经验，深入理解两国职场文化与沟通方式。</p>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🚗</span>
+        <h3 data-zh="机动外勤" data-en="FIELD MOBILITY">机动外勤</h3>
+        <p data-zh="持泰国合法驾照，熟练驾驶，可独立执行各类外勤与现场协调任务。" data-en="Holds valid Thai driver's license, skilled driver capable of independently executing field coordination tasks.">持泰国合法驾照，熟练驾驶，可独立执行各类外勤与现场协调任务。</p>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">💻</span>
+        <h3 data-zh="办公技能" data-en="OFFICE SKILLS">办公技能</h3>
+        <p data-zh="熟悉基础电脑操作，掌握 Word、Excel 等常用办公软件，适应数字化工作环境。" data-en="Proficient in computer operations, Word, Excel and other office software, adapted to digital work environments.">熟悉基础电脑操作，掌握 Word、Excel 等常用办公软件，适应数字化工作环境。</p>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">⚡</span>
+        <h3 data-zh="快速适应" data-en="RAPID ADAPTATION">快速适应</h3>
+        <p data-zh="极强的环境适应力与自学能力，能在最短时间内掌握新行业知识，无缝融入高强度工作节奏。" data-en="Exceptional adaptability and self-learning ability, quickly mastering new industry knowledge and integrating into high-intensity work environments.">极强的环境适应力与自学能力，能在最短时间内掌握新行业知识，无缝融入高强度工作节奏。</p>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🤝</span>
+        <h3 data-zh="稳定可靠" data-en="RELIABILITY">稳定可靠</h3>
+        <p data-zh="注重长期职业发展，具备高度责任心与忠诚度，致力于与企业共同成长。" data-en="Committed to long-term career development with strong sense of responsibility and loyalty, dedicated to growing with the company.">注重长期职业发展，具备高度责任心与忠诚度，致力于与企业共同成长。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">
+      <span class="num">02</span>
+      <h2 data-zh="工作经历" data-en="EXPERIENCE">工作经历</h2>
+    </div>
+
+    <div class="exp-timeline">
+      <div class="exp-item reveal">
+        <div class="exp-company">Asia Excellent Construction Company</div>
+        <div class="exp-role" data-zh="中缅现场翻译" data-en="Chinese-Burmese On-Site Interpreter">中缅现场翻译</div>
+        <ul class="exp-bullets">
+          <li><span data-zh="负责建筑施工现场的中缅双语口译与协调工作" data-en="Responsible for Chinese-Burmese bilingual interpretation and coordination at construction sites">负责建筑施工现场的中缅双语口译与协调工作</span></li>
+          <li><span data-zh="协助中方管理人员与缅籍工人进行日常沟通，准确传达施工要求及安全规范" data-en="Assisted Chinese managers in daily communication with Myanmar workers, accurately conveying construction requirements and safety standards">协助中方管理人员与缅籍工人进行日常沟通，准确传达施工要求及安全规范</span></li>
+          <li><span data-zh="解决现场沟通障碍，保障工程项目按计划顺利推进" data-en="Resolved on-site communication barriers to ensure projects proceeded smoothly according to plan">解决现场沟通障碍，保障工程项目按计划顺利推进</span></li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-company">CITCC — China International Telecommunication Construction Corporation</div>
+        <div class="exp-role" data-zh="工程管理协助" data-en="Engineering Management Assistant">工程管理协助</div>
+        <ul class="exp-bullets">
+          <li><span data-zh="参与通信工程项目的现场执行与协助管理" data-en="Participated in on-site execution and management of telecommunications engineering projects">参与通信工程项目的现场执行与协助管理</span></li>
+          <li><span data-zh="负责团队内部及外部的工作对接与协调" data-en="Responsible for internal and external team coordination and work handoffs">负责团队内部及外部的工作对接与协调</span></li>
+          <li><span data-zh="积累了丰富的通信工程现场经验" data-en="Accumulated extensive on-site experience in telecommunications engineering">积累了丰富的通信工程现场经验</span></li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-company" data-zh="协骏玩具厂（中国）" data-en="Xiejun Toy Factory (China)">协骏玩具厂（中国）</div>
+        <div class="exp-role" data-zh="生产线员工 / 管理" data-en="Production Line Staff / Supervisor">生产线员工 / 管理</div>
+        <ul class="exp-bullets">
+          <li><span data-zh="在中国玩具工厂工作，熟悉生产线流程与日常运营管理" data-en="Worked at a Chinese toy factory, familiar with production line processes and daily operations management">在中国玩具工厂工作，熟悉生产线流程与日常运营管理</span></li>
+          <li><span data-zh="深入了解中国职场文化，具备优秀的跨文化交流与协作能力" data-en="Deep understanding of Chinese workplace culture with excellent cross-cultural communication and collaboration skills">深入了解中国职场文化，具备优秀的跨文化交流与协作能力</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="section-label">
+      <span class="num">03</span>
+      <h2 data-zh="自我评价" data-en="ABOUT ME">自我评价</h2>
+    </div>
+    <div class="intro-box reveal">
+      <p data-zh="早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格。在建筑、通信、制造等多行业的工作中，我始终保持积极主动的态度。作为精通中缅双语的缅甸籍人士，我有中国实地工作经验，能精准理解中方管理需求，并在短时间内适应任何高强度的工作环境。此外，我持有泰国驾照并能熟练驾车，可配合外勤需求。作为一名已婚男士，我非常看重长期的职业发展空间，期望能在有潜力的公司稳定扎根、踏实干事，与公司共同成长。希望能用我过硬的实际能力，为贵公司提供高效、稳定的翻译与支持工作。"
+         data-en="My early life of independence forged a resilient and hardworking character. Across construction, telecommunications, and manufacturing industries, I have always maintained a proactive attitude. As a bilingual Chinese-Burmese Myanmar national with hands-on experience in China, I precisely understand Chinese management needs and can adapt to any high-intensity work environment in a short time. I hold a Thai driver's license and am a skilled driver, available for field assignments. As a married man, I highly value long-term career development, hoping to establish roots at a promising company and grow together with it. I look forward to providing efficient and reliable interpretation and support services.">
+        早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格。在建筑、通信、制造等多行业的工作中，我始终保持积极主动的态度。作为精通中缅双语的缅甸籍人士，我有中国实地工作经验，能精准理解中方管理需求，并在短时间内适应任何高强度的工作环境。此外，我持有泰国驾照并能熟练驾车，可配合外勤需求。作为一名已婚男士，我非常看重长期的职业发展空间，期望能在有潜力的公司稳定扎根、踏实干事，与公司共同成长。希望能用我过硬的实际能力，为贵公司提供高效、稳定的翻译与支持工作。
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">
+      <span class="num">04</span>
+      <h2 data-zh="联系方式" data-en="CONTACT">联系方式</h2>
+    </div>
+
+    <div class="contact-grid reveal">
+      <a href="tel:0826039244" class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-info">
+          <label data-zh="电话（点击拨打）" data-en="PHONE (tap to call)">电话（点击拨打）</label>
+          <span>0826039244</span>
+        </div>
+      </a>
+      <a href="https://line.me/ti/p/jonas888999" target="_blank" rel="noopener" class="contact-card">
+        <div class="contact-icon">💬</div>
+        <div class="contact-info">
+          <label data-zh="LINE（点击添加）" data-en="LINE (tap to add)">LINE（点击添加）</label>
+          <span>jonas888999</span>
+        </div>
+      </a>
+      <a href="https://maps.google.com/?q=Bangkok,Thailand" target="_blank" rel="noopener" class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div class="contact-info">
+          <label data-zh="位置（点击查看地图）" data-en="LOCATION (tap for map)">位置（点击查看地图）</label>
+          <span data-zh="泰国·曼谷" data-en="Bangkok, Thailand">泰国·曼谷</span>
+        </div>
+      </a>
+      <div class="contact-card" style="cursor:default;pointer-events:none;">
+        <div class="contact-icon">⚡</div>
+        <div class="contact-info">
+          <label data-zh="到岗时间" data-en="AVAILABILITY">到岗时间</label>
+          <span data-zh="随时可以上岗" data-en="Immediately Available">随时可以上岗</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="李恩伟_CV.pdf" download="李恩伟_CV.pdf" class="cv-download-card reveal">
+      <div class="cv-download-card-left">
+        <div class="cv-download-icon">📄</div>
+        <div>
+          <div class="cv-download-title" data-zh="下载完整简历" data-en="Download Full CV">下载完整简历</div>
+          <div class="cv-download-sub" data-zh="李恩伟_CV.pdf · 个人简历" data-en="LiEnwei_CV.pdf · Personal Resume">李恩伟_CV.pdf · 个人简历</div>
+        </div>
+      </div>
+      <div class="cv-download-btn">⬇ <span data-zh="下载 PDF" data-en="Download PDF">下载 PDF</span></div>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-text">© 2026 李恩伟 · LI ENWEI</div>
+  <div class="footer-text" data-zh="个人简历 · 曼谷" data-en="Personal Resume · Bangkok">个人简历 · 曼谷</div>
+</footer>
+
+<script>
+  /* ── 主题切换 ── */
+  const html = document.documentElement;
+  const themeBtn = document.getElementById('theme-btn');
+
+  let currentTheme = localStorage.getItem('theme') || 'dark';
+  applyTheme(currentTheme);
+
+  function applyTheme(theme) {
+    currentTheme = theme;
+    html.setAttribute('data-theme', theme);
+    themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    themeBtn.title = theme === 'dark' ? '切换日间模式' : '切换夜间模式';
+    localStorage.setItem('theme', theme);
+  }
+
+  function toggleTheme() {
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  }
+
+  /* ── 语言切换 ── */
+  let currentLang = 'zh';
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-zh]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val) el.textContent = val;
+    });
+    html.lang = lang === 'zh' ? 'zh' : 'en';
+  }
+
+  /* ── 滚动动画 ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('.lang-fill').forEach(b => b.classList.add('animate'));
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const langObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting)
+        document.querySelectorAll('.lang-fill').forEach(b => b.classList.add('animate'));
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.lang-grid').forEach(el => langObs.observe(el));
+</script>
+
+</body>
+</html>
