@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>李恩伟 · Li Enwei | 个人简历</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 
 /* ═══════════════════════════════════════
@@ -76,12 +76,24 @@ background: var(--bg);
 body {
 background: var(--bg);
 color: var(--text);
-font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+/* 加入了 Padauk 作为缅甸语字体 */
+font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
 overflow-x: hidden;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 text-rendering: optimizeLegibility;
 transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* 缅甸语特殊排版优化：使用 Padauk 字体 */
+html[lang="my"] body {
+  font-family: 'Padauk', 'Noto Sans SC', sans-serif;
+  line-height: 1.8;
+  word-break: break-word;
+}
+html[lang="my"] .hero-title, html[lang="my"] .exp-role, html[lang="my"] h2, html[lang="my"] h3 {
+  font-family: 'Padauk', sans-serif;
+  font-weight: 700;
 }
 
 /* Grid background */
@@ -117,43 +129,62 @@ transition: background 0.4s ease;
 @keyframes orb-float { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
 
 /* ═══════════════════════════════════════
-Top Controls (lang + theme)
+   Top Controls (支持三语设计)
 ═══════════════════════════════════════ */
 .top-controls {
-position: fixed; top: 20px; right: 20px; z-index: 1000;
-display: flex; align-items: center; gap: 8px;
+  position: fixed; top: 24px; right: 40px; z-index: 1000;
+  display: flex; align-items: center; gap: 14px;
+  background: var(--nav-bg); border: 1px solid var(--border);
+  border-radius: 50px; padding: 6px 8px 6px 14px;
+  backdrop-filter: blur(20px); box-shadow: var(--shadow);
+  transition: all 0.4s ease;
 }
 
-/* Language toggle */
+/* 语言滑块 */
 .lang-toggle {
-display: flex; gap: 3px;
-background: var(--card-bg);
-border: 1px solid var(--border);
-border-radius: 50px; padding: 4px;
-backdrop-filter: blur(12px);
-box-shadow: var(--shadow);
-transition: background 0.4s ease, border-color 0.4s ease;
+  position: relative; display: flex; align-items: center;
+  width: 94px; height: 28px; background: var(--bg3);
+  border-radius: 20px; cursor: pointer; border: 1px solid var(--border-soft);
+  transition: border-color 0.3s ease;
 }
-.lang-btn {
-padding: 7px 16px; border-radius: 50px; border: none; cursor: pointer;
-font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px;
-transition: all 0.3s ease; background: transparent; color: var(--text-dim);
+.lang-toggle:hover { border-color: var(--accent); }
+
+.lang-slider {
+  position: absolute; top: 2px; left: 2px;
+  width: 28px; height: 22px; background: var(--accent);
+  border-radius: 16px; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(0,212,255,0.3); z-index: 0;
 }
-.lang-btn.active {
-background: var(--accent); color: #fff;
-box-shadow: 0 0 12px rgba(0,212,255,0.4); font-weight: 700;
+.lang-text {
+  flex: 1; text-align: center; font-family: 'Space Mono', monospace;
+  font-size: 11px; font-weight: 700; color: var(--text-dim);
+  z-index: 1; transition: color 0.3s ease; user-select: none;
 }
 
-/* Theme toggle button */
+/* 三语滑块位置与颜色 */
+html[lang="zh"] .lang-slider { transform: translateX(0); background: var(--accent); box-shadow: 0 0 10px rgba(0,212,255,0.4); }
+html[lang="en"] .lang-slider { transform: translateX(31px); background: var(--accent2); box-shadow: 0 0 10px rgba(123,47,255,0.4); }
+html[lang="my"] .lang-slider { transform: translateX(62px); background: var(--accent3); box-shadow: 0 0 10px rgba(0,255,157,0.4); }
+
+html[lang="zh"] #text-zh { color: var(--bg); }
+html[lang="en"] #text-en { color: #fff; }
+html[lang="my"] #text-my { color: var(--bg); }
+
+/* 分隔线 */
+.control-divider { width: 1px; height: 16px; background: var(--border); opacity: 0.6; }
+
+/* 主题按钮 */
 .theme-btn {
-width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
-background: var(--card-bg); cursor: pointer;
-display: flex; align-items: center; justify-content: center;
-font-size: 16px; transition: all 0.3s ease;
-backdrop-filter: blur(12px); box-shadow: var(--shadow);
-color: var(--text);
+  width: 32px; height: 32px; border-radius: 50%;
+  background: transparent; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); transition: all 0.3s ease;
 }
-.theme-btn:hover { border-color: var(--accent); box-shadow: var(--glow); transform: rotate(20deg); }
+.theme-btn:hover { color: var(--accent); transform: rotate(15deg) scale(1.1); }
+.theme-btn svg {
+  width: 18px; height: 18px; fill: none; stroke: currentColor;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
 
 /* ═══════════════════════════════════════
 Nav
@@ -174,6 +205,7 @@ text-shadow: 0 0 20px rgba(0,212,255,0.3);
 }
 .nav-cv-btn {
 margin-left: auto;
+margin-right: 180px;
 display: inline-flex; align-items: center; gap: 8px;
 padding: 8px 20px;
 color: var(--accent); border: 1px solid var(--accent);
@@ -329,7 +361,7 @@ transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 /* Language bars */
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 40px; }
 .lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.lang-name { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+.lang-name { font-family: 'Noto Sans SC', 'Padauk', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
 .lang-level { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 1px; }
 .lang-bar { height: 6px; background: var(--bg3); border-radius: 50px; overflow: hidden; border: 1px solid var(--border); }
 .lang-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 0 8px var(--accent); animation: bar-fill 1.5s ease both; animation-play-state: paused; }
@@ -356,7 +388,7 @@ font-family: 'Space Mono', monospace; font-size: 10px;
 color: var(--accent); letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase;
 }
 .exp-role {
-font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', sans-serif;
 font-size: clamp(17px, 2.2vw, 22px); font-weight: 700; margin-bottom: 18px; color: var(--text);
 }
 .exp-bullets { list-style: none; }
@@ -428,6 +460,11 @@ font-size: 12px; font-weight: 700; letter-spacing: 1px; white-space: nowrap;
 }
 
 /* ═══════════════════════════════════════
+Giscus 留言板样式
+═══════════════════════════════════════ */
+.comment-container { max-width: 800px; margin: 0 auto; min-height: 300px; }
+
+/* ═══════════════════════════════════════
 Footer
 ═══════════════════════════════════════ */
 footer {
@@ -455,11 +492,19 @@ section { padding: 60px 20px; }
 .hero { padding: 100px 20px 60px; }
 .hero-visual { display: none; }
 nav { padding: 14px 20px; }
+.nav-cv-btn { margin-right: 0; }
 footer { padding: 28px 20px; flex-direction: column; text-align: center; }
 .cv-download-card { flex-direction: column; align-items: flex-start; }
-.top-controls { top: 14px; right: 14px; gap: 6px; }
-.lang-btn { padding: 6px 12px; font-size: 9px; }
-.theme-btn { width: 34px; height: 34px; font-size: 14px; }
+
+/* 新版顶部控制栏适配 (三语) */
+.top-controls { top: 16px; right: 20px; padding: 4px 6px 4px 10px; gap: 10px; }
+.lang-toggle { width: 80px; height: 24px; }
+.lang-slider { width: 24px; height: 18px; }
+html[lang="en"] .lang-slider { transform: translateX(27px); }
+html[lang="my"] .lang-slider { transform: translateX(54px); }
+.lang-text { font-size: 10px; }
+.theme-btn { width: 28px; height: 28px; }
+.theme-btn svg { width: 15px; height: 15px; }
 }
 </style>
 
@@ -471,17 +516,22 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
 <div class="orb orb-3"></div>
 
 <div class="top-controls">
-  <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('zh')" id="btn-zh">中文</button>
-    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  <div class="lang-toggle" onclick="toggleLang()" title="Switch Language">
+    <div class="lang-slider"></div>
+    <span class="lang-text" id="text-zh">ZH</span>
+    <span class="lang-text" id="text-en">EN</span>
+    <span class="lang-text" id="text-my">MY</span>
   </div>
-  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" title="切换日间/夜间模式">🌙</button>
+  
+  <div class="control-divider"></div>
+  
+  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" title="Toggle Theme"></button>
 </div>
 
 <nav>
   <div class="nav-logo">LEW</div>
   <a href="李恩伟_CV.pdf" download="李恩伟_CV.pdf" class="nav-cv-btn">
-    ⬇ <span data-zh="下载 CV" data-en="Download CV">下载 CV</span>
+    ⬇ <span data-zh="下载 CV" data-en="Download CV" data-my="CV ဒေါင်းလုဒ်">下载 CV</span>
   </a>
 </nav>
 
@@ -489,26 +539,26 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
 
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-tag" data-zh="中缅翻译 · 曼谷" data-en="ZH-MY Professional Interpreter · Bangkok">中缅翻译 · 曼谷</div>
+      <div class="hero-tag" data-zh="中缅翻译 · 曼谷" data-en="ZH-MY Professional Interpreter · Bangkok" data-my="တရုတ်-မြန်မာ စကားပြန် · ဘန်ကောက်">中缅翻译 · 曼谷</div>
       <div class="hero-name">李恩伟</div>
       <div class="hero-name-en">LI ENWEI</div>
-      <div class="hero-title" data-zh="个人简历" data-en="Personal Resume">个人简历</div>
+      <div class="hero-title" data-zh="个人简历" data-en="Personal Resume" data-my="ကိုယ်ရေးရာဇဝင်">个人简历</div>
 
       <div class="hero-meta">
-        <div class="meta-chip"><span>📍</span> <span data-zh="泰国·曼谷" data-en="Bangkok, Thailand">泰国·曼谷</span></div>
-        <div class="meta-chip"><span>🌐</span> <span data-zh="缅甸国籍" data-en="Myanmar Nationality">缅甸国籍</span></div>
-        <div class="meta-chip"><span>📋</span> <span data-zh="合法工作签证" data-en="Legal Work Permit">合法工作签证</span></div>
-        <div class="meta-chip"><span>🚗</span> <span data-zh="持泰国驾照" data-en="Thai Driver's License">持泰国驾照</span></div>
-        <div class="meta-chip"><span>💼</span> <span data-zh="37岁 · 已婚" data-en="37 yrs · Married">37岁 · 已婚</span></div>
-        <div class="meta-chip"><span>💰</span> <span data-zh="期望薪资 25,000+ THB/月" data-en="Expected 25,000+ THB/mo">期望薪资 25,000+ THB/月</span></div>
+        <div class="meta-chip"><span>📍</span> <span data-zh="泰国·曼谷" data-en="Bangkok, Thailand" data-my="ထိုင်းနိုင်ငံ၊ ဘန်ကောက်">泰国·曼谷</span></div>
+        <div class="meta-chip"><span>🌐</span> <span data-zh="缅甸国籍" data-en="Myanmar Nationality" data-my="မြန်မာနိုင်ငံသား">缅甸国籍</span></div>
+        <div class="meta-chip"><span>📋</span> <span data-zh="合法工作签证" data-en="Legal Work Permit" data-my="တရားဝင် အလုပ်ဗီဇာ">合法工作签证</span></div>
+        <div class="meta-chip"><span>🚗</span> <span data-zh="持泰国驾照" data-en="Thai Driver's License" data-my="ထိုင်း ယာဉ်မောင်းလိုင်စင် ရှိသည်">持泰国驾照</span></div>
+        <div class="meta-chip"><span>💼</span> <span data-zh="37岁 · 已婚" data-en="37 yrs · Married" data-my="အသက် ၃၇ နှစ် · အိမ်ထောင်ရှိ">37岁 · 已婚</span></div>
+        <div class="meta-chip"><span>💰</span> <span data-zh="期望薪资 25,000+ THB/月" data-en="Expected 25,000+ THB/mo" data-my="မျှော်မှန်းလစာ ၂၅,၀၀၀+ ဘတ်/လ">期望薪资 25,000+ THB/月</span></div>
       </div>
 
       <div class="hero-cta">
-        <a href="tel:0826039244" class="btn-primary">📞 <span data-zh="立即联系" data-en="Contact Now">立即联系</span></a>
-        <a href="#experience" class="btn-secondary">→ <span data-zh="查看经历" data-en="View Experience">查看经历</span></a>
+        <a href="tel:0826039244" class="btn-primary">📞 <span data-zh="立即联系" data-en="Contact Now" data-my="ယခု ဆက်သွယ်ရန်">立即联系</span></a>
+        <a href="#experience" class="btn-secondary">→ <span data-zh="查看经历" data-en="View Experience" data-my="လုပ်ငန်းအတွေ့အကြုံ ကြည့်ရန်">查看经历</span></a>
         <a href="李恩伟_CV.pdf" download="李恩伟_CV.pdf" class="btn-download-cv">
           <span class="dl-arrow">⬇</span>
-          <span data-zh="下载简历 PDF" data-en="Download CV PDF">下载简历 PDF</span>
+          <span data-zh="下载简历 PDF" data-en="Download CV PDF" data-my="CV PDF ဒေါင်းလုဒ်">下载简历 PDF</span>
         </a>
       </div>
     </div>
@@ -523,21 +573,21 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   <section class="alt">
     <div class="section-label">
       <span class="num">01</span>
-      <h2 data-zh="语言与技能" data-en="LANGUAGES & SKILLS">语言与技能</h2>
+      <h2 data-zh="语言与技能" data-en="LANGUAGES & SKILLS" data-my="ဘာသာစကားနှင့် ကျွမ်းကျင်မှုများ">语言与技能</h2>
     </div>
 
     <div class="lang-grid reveal">
       <div class="lang-item">
         <div class="lang-header">
-          <div class="lang-name" data-zh="缅甸语" data-en="Burmese">缅甸语</div>
-          <div class="lang-level" data-zh="母语" data-en="NATIVE">母语</div>
+          <div class="lang-name" data-zh="缅甸语" data-en="Burmese" data-my="မြန်မာစကား">缅甸语</div>
+          <div class="lang-level" data-zh="母语" data-en="NATIVE" data-my="မိခင်ဘာသာစကား">母语</div>
         </div>
         <div class="lang-bar"><div class="lang-fill" style="--target-width:100%;width:0"></div></div>
       </div>
       <div class="lang-item">
         <div class="lang-header">
-          <div class="lang-name" data-zh="中文（普通话）" data-en="Chinese (Mandarin)">中文（普通话）</div>
-          <div class="lang-level" data-zh="流利" data-en="FLUENT">流利</div>
+          <div class="lang-name" data-zh="中文（普通话）" data-en="Chinese (Mandarin)" data-my="တရုတ်စကား (မန်ဒရင်း)">中文（普通话）</div>
+          <div class="lang-level" data-zh="流利" data-en="FLUENT" data-my="ကျွမ်းကျင်">流利</div>
         </div>
         <div class="lang-bar"><div class="lang-fill" style="--target-width:90%;width:0"></div></div>
       </div>
@@ -546,33 +596,33 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
     <div class="skills-grid" style="margin-top:56px">
       <div class="skill-card reveal">
         <span class="skill-icon">🗣️</span>
-        <h3 data-zh="现场翻译" data-en="ON-SITE INTERPRETATION">现场翻译</h3>
-        <p data-zh="精通中缅双语现场口译，能精准传达技术要求与管理指令，消除语言障碍。" data-en="Expert in Chinese-Burmese on-site interpretation, accurately conveying technical requirements and management directives.">精通中缅双语现场口译，能精准传达技术要求与管理指令，消除语言障碍。</p>
+        <h3 data-zh="现场翻译" data-en="ON-SITE INTERPRETATION" data-my="လုပ်ငန်းခွင် စကားပြန်">现场翻译</h3>
+        <p data-zh="精通中缅双语现场口译，能精准传达技术要求与管理指令，消除语言障碍。" data-en="Expert in Chinese-Burmese on-site interpretation, accurately conveying technical requirements and management directives." data-my="တရုတ်-မြန်မာ နှစ်ဘာသာ လုပ်ငန်းခွင် စကားပြန်တွင် ကျွမ်းကျင်ပြီး နည်းပညာနှင့် စီမံခန့်ခွဲမှုဆိုင်ရာ ညွှန်ကြားချက်များကို တိကျစွာ ဘာသာပြန်ဆိုနိုင်ကာ ဘာသာစကား အခက်အခဲများကို ဖြေရှင်းပေးနိုင်ပါသည်။">精通中缅双语现场口译，能精准传达技术要求与管理指令，消除语言障碍。</p>
       </div>
       <div class="skill-card reveal">
         <span class="skill-icon">🌉</span>
-        <h3 data-zh="跨文化协调" data-en="CROSS-CULTURAL COORDINATION">跨文化协调</h3>
-        <p data-zh="具备丰富的中缅双方工作对接经验，深入理解两国职场文化与沟通方式。" data-en="Rich experience bridging Chinese and Myanmar work cultures, with deep understanding of both workplace dynamics.">具备丰富的中缅双方工作对接经验，深入理解两国职场文化与沟通方式。</p>
+        <h3 data-zh="两国文化协调" data-en="CROSS-CULTURAL COORDINATION" data-my="နှစ်နိုင်ငံ၏ယဉ်ကျေးမှုသိရှိနားလည်ပြီးညှိနိုင်းဆောင်ရွက်နိုင်မှု">两国文化协调</h3>
+        <p data-zh="具备丰富的中缅双方工作对接经验，深入理解两国职场文化与沟通方式。" data-en="Rich experience bridging Chinese and Myanmar work cultures, with deep understanding of both workplace dynamics." data-my="တရုတ်နှင့် မြန်မာ နှစ်နိုင်ငံ လုပ်ငန်းခွင် ဆက်သွယ်မှု အတွေ့အကြုံများစွာရှိပြီး နှစ်နိုင်ငံ၏ လုပ်ငန်းခွင်ယဉ်ကျေးမှုနှင့် ဆက်သွယ်ပုံကို နက်ရှိုင်းစွာ နားလည်ထားပါသည်။">具备丰富的中缅双方工作对接经验，深入理解两国职场文化与沟通方式。</p>
       </div>
       <div class="skill-card reveal">
         <span class="skill-icon">🚗</span>
-        <h3 data-zh="机动外勤" data-en="FIELD MOBILITY">机动外勤</h3>
-        <p data-zh="持泰国合法驾照，熟练驾驶，可独立执行各类外勤与现场协调任务。" data-en="Holds valid Thai driver's license, skilled driver capable of independently executing field coordination tasks.">持泰国合法驾照，熟练驾驶，可独立执行各类外勤与现场协调任务。</p>
+        <h3 data-zh="机动外勤" data-en="FIELD MOBILITY" data-my="ကွင်းဆင်း တာဝန်ထမ်းဆောင်မှု">机动外勤</h3>
+        <p data-zh="持泰国合法驾照，熟练驾驶，可独立执行各类外勤与现场协调任务。" data-en="Holds valid Thai driver's license, skilled driver capable of independently executing field coordination tasks." data-my="တရားဝင် ထိုင်းယာဉ်မောင်းလိုင်စင်ရှိပြီး ကားမောင်းကျွမ်းကျင်ကာ ကွင်းဆင်းတာဝန်များနှင့် ညှိနှိုင်းရေးလုပ်ငန်းများကို သီးခြားလုပ်ဆောင်နိုင်ပါသည်။">持泰国合法驾照，熟练驾驶，可独立执行各类外勤与现场协调任务。</p>
       </div>
       <div class="skill-card reveal">
         <span class="skill-icon">💻</span>
-        <h3 data-zh="办公技能" data-en="OFFICE SKILLS">办公技能</h3>
-        <p data-zh="熟悉基础电脑操作，掌握 Word、Excel 等常用办公软件，适应数字化工作环境。" data-en="Proficient in computer operations, Word, Excel and other office software, adapted to digital work environments.">熟悉基础电脑操作，掌握 Word、Excel 等常用办公软件，适应数字化工作环境。</p>
+        <h3 data-zh="办公技能" data-en="OFFICE SKILLS" data-my="ရုံးလုပ်ငန်း ကျွမ်းကျင်မှု">办公技能</h3>
+        <p data-zh="熟悉基础电脑操作，掌握 Word、Excel 等常用办公软件，适应数字化工作环境。" data-en="Proficient in computer operations, Word, Excel and other office software, adapted to digital work environments." data-my="အခြေခံ ကွန်ပျူတာ အသုံးပြုမှုနှင့် Word, Excel စသည့် ရုံးသုံးဆော့ဖ်ဝဲများကို ကျွမ်းကျင်စွာ အသုံးပြုနိုင်ပြီး ဒီဂျစ်တယ် လုပ်ငန်းခွင်နှင့် အဆင်ပြေစွာ အလုပ်လုပ်နိုင်ပါသည်။">熟悉基础电脑操作，掌握 Word、Excel 等常用办公软件，适应数字化工作环境。</p>
       </div>
       <div class="skill-card reveal">
         <span class="skill-icon">⚡</span>
-        <h3 data-zh="快速适应" data-en="RAPID ADAPTATION">快速适应</h3>
-        <p data-zh="极强的环境适应力与自学能力，能在最短时间内掌握新行业知识，无缝融入高强度工作节奏。" data-en="Exceptional adaptability and self-learning ability, quickly mastering new industry knowledge and integrating into high-intensity work environments.">极强的环境适应力与自学能力，能在最短时间内掌握新行业知识，无缝融入高强度工作节奏。</p>
+        <h3 data-zh="快速适应" data-en="RAPID ADAPTATION" data-my="လျင်မြန်စွာ အသားကျနိုင်မှု">快速适应</h3>
+        <p data-zh="极强的环境适应力与自学能力，能在最短时间内掌握新行业知识，无缝融入高强度工作节奏。" data-en="Exceptional adaptability and self-learning ability, quickly mastering new industry knowledge and integrating into high-intensity work environments." data-my="ပတ်ဝန်းကျင်နှင့် လျင်မြန်စွာ အသားကျနိုင်ပြီး ကိုယ်တိုင်လေ့လာနိုင်စွမ်းရှိကာ လုပ်ငန်းသစ်များကို အချိန်တိုအတွင်း နားလည်သဘောပေါက်ပြီး အလုပ်အရှိန်အဟုန်နှင့် လိုက်လျောညီထွေစွာ အလုပ်လုပ်နိုင်ပါသည်။">极强的环境适应力与自学能力，能在最短时间内掌握新行业知识，无缝融入高强度工作节奏。</p>
       </div>
       <div class="skill-card reveal">
         <span class="skill-icon">🤝</span>
-        <h3 data-zh="稳定可靠" data-en="RELIABILITY">稳定可靠</h3>
-        <p data-zh="注重长期职业发展，具备高度责任心与忠诚度，致力于与企业共同成长。" data-en="Committed to long-term career development with strong sense of responsibility and loyalty, dedicated to growing with the company.">注重长期职业发展，具备高度责任心与忠诚度，致力于与企业共同成长。</p>
+        <h3 data-zh="稳定可靠" data-en="RELIABILITY" data-my="တည်ငြိမ် ယုံကြည်စိတ်ချရမှု">稳定可靠</h3>
+        <p data-zh="注重长期职业发展，具备高度责任心与忠诚度，致力于与企业共同成长。" data-en="Committed to long-term career development with strong sense of responsibility and loyalty, dedicated to growing with the company." data-my="ရေရှည် အသက်မွေးဝမ်းကျောင်း တိုးတက်မှုကို ဦးစားပေးပြီး တာဝန်သိစိတ်နှင့် သစ္စာရှိမှု မြင့်မားကာ ကုမ္ပဏီနှင့်အတူ တိုးတက်အောင် ကြိုးပမ်းသွားမည်ဖြစ်ပါသည်။">注重长期职业发展，具备高度责任心与忠诚度，致力于与企业共同成长。</p>
       </div>
     </div>
   </section>
@@ -580,36 +630,36 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   <section id="experience">
     <div class="section-label">
       <span class="num">02</span>
-      <h2 data-zh="工作经历" data-en="EXPERIENCE">工作经历</h2>
+      <h2 data-zh="工作经历" data-en="EXPERIENCE" data-my="လုပ်ငန်း အတွေ့အကြုံ">工作经历</h2>
     </div>
 
     <div class="exp-timeline">
       <div class="exp-item reveal">
         <div class="exp-company">Asia Excellent Construction Company</div>
-        <div class="exp-role" data-zh="中缅现场翻译" data-en="Chinese-Burmese On-Site Interpreter">中缅现场翻译</div>
+        <div class="exp-role" data-zh="中缅现场翻译" data-en="Chinese-Burmese On-Site Interpreter" data-my="တရုတ်-မြန်မာ လုပ်ငန်းခွင် စကားပြန်">中缅现场翻译</div>
         <ul class="exp-bullets">
-          <li><span data-zh="负责建筑施工现场的中缅双语口译与协调工作" data-en="Responsible for Chinese-Burmese bilingual interpretation and coordination at construction sites">负责建筑施工现场的中缅双语口译与协调工作</span></li>
-          <li><span data-zh="协助中方管理人员与缅籍工人进行日常沟通，准确传达施工要求及安全规范" data-en="Assisted Chinese managers in daily communication with Myanmar workers, accurately conveying construction requirements and safety standards">协助中方管理人员与缅籍工人进行日常沟通，准确传达施工要求及安全规范</span></li>
-          <li><span data-zh="解决现场沟通障碍，保障工程项目按计划顺利推进" data-en="Resolved on-site communication barriers to ensure projects proceeded smoothly according to plan">解决现场沟通障碍，保障工程项目按计划顺利推进</span></li>
+          <li><span data-zh="负责建筑施工现场的中缅双语口译与协调工作" data-en="Responsible for Chinese-Burmese bilingual interpretation and coordination at construction sites" data-my="ဆောက်လုပ်ရေး လုပ်ငန်းခွင်များတွင် တရုတ်-မြန်မာ နှစ်ဘာသာ စကားပြန်နှင့် ညှိနှိုင်းရေးလုပ်ငန်းများကို တာဝန်ယူ ဆောင်ရွက်ခဲ့ပါသည်။">负责建筑施工现场的中缅双语口译与协调工作</span></li>
+          <li><span data-zh="协助中方管理人员与缅籍工人进行日常沟通，准确传达施工要求及安全规范" data-en="Assisted Chinese managers in daily communication with Myanmar workers, accurately conveying construction requirements and safety standards" data-my="တရုတ် စီမံခန့်ခွဲသူများနှင့် မြန်မာ အလုပ်သမားများအကြား နေ့စဉ် ဆက်သွယ်ရေးကို ကူညီပေးပြီး ဆောက်လုပ်ရေး လိုအပ်ချက်များနှင့် ဘေးကင်းရေး စည်းမျဉ်းများကို တိကျစွာ ဘာသာပြန်ဆိုပေးခဲ့ပါသည်။">协助中方管理人员与缅籍工人进行日常沟通，准确传达施工要求及安全规范</span></li>
+          <li><span data-zh="解决现场沟通障碍，保障工程项目按计划顺利推进" data-en="Resolved on-site communication barriers to ensure projects proceeded smoothly according to plan" data-my="လုပ်ငန်းခွင် ဆက်သွယ်ရေး အခက်အခဲများကို ဖြေရှင်းပေးပြီး စီမံကိန်းများကို အစီအစဉ်အတိုင်း ချောမွေ့စွာ ပြီးမြောက်အောင် ကူညီပေးခဲ့ပါသည်။">解决现场沟通障碍，保障工程项目按计划顺利推进</span></li>
         </ul>
       </div>
 
       <div class="exp-item reveal">
         <div class="exp-company">CITCC — China International Telecommunication Construction Corporation</div>
-        <div class="exp-role" data-zh="工程管理协助" data-en="Engineering Management Assistant">工程管理协助</div>
+        <div class="exp-role" data-zh="工程管理协助" data-en="Engineering Management Assistant" data-my="အင်ဂျင်နီယာ စီမံခန့်ခွဲမှု အကူ">工程管理协助</div>
         <ul class="exp-bullets">
-          <li><span data-zh="参与通信工程项目的现场执行与协助管理" data-en="Participated in on-site execution and management of telecommunications engineering projects">参与通信工程项目的现场执行与协助管理</span></li>
-          <li><span data-zh="负责团队内部及外部的工作对接与协调" data-en="Responsible for internal and external team coordination and work handoffs">负责团队内部及外部的工作对接与协调</span></li>
-          <li><span data-zh="积累了丰富的通信工程现场经验" data-en="Accumulated extensive on-site experience in telecommunications engineering">积累了丰富的通信工程现场经验</span></li>
+          <li><span data-zh="参与通信工程项目的现场执行与协助管理" data-en="Participated in on-site execution and management of telecommunications engineering projects" data-my="ဆက်သွယ်ရေး အင်ဂျင်နီယာ စီမံကိန်းများ၏ လုပ်ငန်းခွင် အကောင်အထည်ဖော်မှုနှင့် စီမံခန့်ခွဲမှုတို့တွင် ပါဝင်ကူညီခဲ့ပါသည်။">参与通信工程项目的现场执行与协助管理</span></li>
+          <li><span data-zh="负责团队内部及外部的工作对接与协调" data-en="Responsible for internal and external team coordination and work handoffs" data-my="အဖွဲ့တွင်းနှင့် အပြင် လုပ်ငန်းချိတ်ဆက်မှုများနှင့် ညှိနှိုင်းရေးများကို တာဝန်ယူ ဆောင်ရွက်ခဲ့ပါသည်။">负责团队内部及外部的工作对接与协调</span></li>
+          <li><span data-zh="积累了丰富的通信工程现场经验" data-en="Accumulated extensive on-site experience in telecommunications engineering" data-my="ဆက်သွယ်ရေး အင်ဂျင်နီယာ လုပ်ငန်းခွင် အတွေ့အကြုံများစွာ ရရှိခဲ့ပါသည်။">积累了丰富的通信工程现场经验</span></li>
         </ul>
       </div>
 
       <div class="exp-item reveal">
-        <div class="exp-company" data-zh="协骏玩具厂（中国）" data-en="Xiejun Toy Factory (China)">协骏玩具厂（中国）</div>
-        <div class="exp-role" data-zh="生产线员工 / 管理" data-en="Production Line Staff / Supervisor">生产线员工 / 管理</div>
+        <div class="exp-company" data-zh="协骏玩具厂（中国）" data-en="Xiejun Toy Factory (China)" data-my="Xiejun ကစားစရာစက်ရုံ (တရုတ်နိုင်ငံ)">协骏玩具厂（中国）</div>
+        <div class="exp-role" data-zh="生产线员工 / 管理" data-en="Production Line Staff / Supervisor" data-my="ထုတ်လုပ်ရေးလိုင်း ဝန်ထမ်း / ကြီးကြပ်ရေး">生产线员工 / 管理</div>
         <ul class="exp-bullets">
-          <li><span data-zh="在中国玩具工厂工作，熟悉生产线流程与日常运营管理" data-en="Worked at a Chinese toy factory, familiar with production line processes and daily operations management">在中国玩具工厂工作，熟悉生产线流程与日常运营管理</span></li>
-          <li><span data-zh="深入了解中国职场文化，具备优秀的跨文化交流与协作能力" data-en="Deep understanding of Chinese workplace culture with excellent cross-cultural communication and collaboration skills">深入了解中国职场文化，具备优秀的跨文化交流与协作能力</span></li>
+          <li><span data-zh="在中国玩具工厂工作，熟悉生产线流程与日常运营管理" data-en="Worked at a Chinese toy factory, familiar with production line processes and daily operations management" data-my="တရုတ်နိုင်ငံရှိ ကစားစရာ စက်ရုံတွင် အလုပ်လုပ်ခဲ့ပြီး ထုတ်လုပ်ရေးလိုင်း လုပ်ငန်းစဉ်များနှင့် နေ့စဉ် လည်ပတ်မှု စီမံခန့်ခွဲမှုများကို ကျွမ်းကျင်စွာ သိရှိပါသည်။">在中国玩具工厂工作，熟悉生产线流程与日常运营管理</span></li>
+          <li><span data-zh="深入了解中国职场文化，具备优秀的两国文化交流与协作能力" data-en="Deep understanding of Chinese workplace culture with excellent cross-cultural communication and collaboration skills" data-my="တရုတ် လုပ်ငန်းခွင် လုပ်ထုံးလုပ်နည်းနှင့် နှစ်နိုင်ငံ၏ယဉ်ကျေးမှုသိရှိနားလည်ပြီးညှိနိုင်းပူးပေါင်းဆောင်ရွက်နိုင်စွမ်း အထူးကောင်းမွန်ပါသည်။">深入了解中国职场文化，具备优秀的两国文化交流与协作能力</span></li>
         </ul>
       </div>
     </div>
@@ -618,11 +668,12 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   <section class="alt">
     <div class="section-label">
       <span class="num">03</span>
-      <h2 data-zh="自我评价" data-en="ABOUT ME">自我评价</h2>
+      <h2 data-zh="自我评价" data-en="ABOUT ME" data-my="ကိုယ်ရေးအကျဉ်း">自我评价</h2>
     </div>
     <div class="intro-box reveal">
       <p data-zh="早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格。在建筑、通信、制造等多行业的工作中，我始终保持积极主动的态度。作为精通中缅双语的缅甸籍人士，我有中国实地工作经验，能精准理解中方管理需求，并在短时间内适应任何高强度的工作环境。此外，我持有泰国驾照并能熟练驾车，可配合外勤需求。作为一名已婚男士，我非常看重长期的职业发展空间，期望能在有潜力的公司稳定扎根、踏实干事，与公司共同成长。希望能用我过硬的实际能力，为贵公司提供高效、稳定的翻译与支持工作。"
-         data-en="My early life of independence forged a resilient and hardworking character. Across construction, telecommunications, and manufacturing industries, I have always maintained a proactive attitude. As a bilingual Chinese-Burmese Myanmar national with hands-on experience in China, I precisely understand Chinese management needs and can adapt to any high-intensity work environment in a short time. I hold a Thai driver's license and am a skilled driver, available for field assignments. As a married man, I highly value long-term career development, hoping to establish roots at a promising company and grow together with it. I look forward to providing efficient and reliable interpretation and support services.">
+         data-en="My early life of independence forged a resilient and hardworking character. Across construction, telecommunications, and manufacturing industries, I have always maintained a proactive attitude. As a bilingual Chinese-Burmese Myanmar national with hands-on experience in China, I precisely understand Chinese management needs and can adapt to any high-intensity work environment in a short time. I hold a Thai driver's license and am a skilled driver, available for field assignments. As a married man, I highly value long-term career development, hoping to establish roots at a promising company and grow together with it. I look forward to providing efficient and reliable interpretation and support services."
+         data-my="ငယ်ရွယ်စဉ်ကတည်းက ကိုယ့်ဒူးကိုယ်ချွန်ရပ်တည်ခဲ့ရသော အတွေ့အကြုံများကြောင့် အခက်အခဲများကို ကြံ့ကြံ့ခံနိုင်သောစိတ်ဓါတ်ခွန်အားနှင့် စရိုက်လက္ခဏာရှိပါသည်။ ဆောက်လုပ်ရေး၊ ဆက်သွယ်ရေးနှင့် ထုတ်လုပ်ရေး အစရှိသော လုပ်ငန်းများစွာတွင် အလုပ်လုပ်ကိုင်ခဲ့ရာ၌ အမြဲတမ်း တက်ကြွသော စိတ်ဓာတ်ဖြင့် ဆောင်ရွက်ခဲ့ပါသည်။ တရုတ်-မြန်မာ နှစ်ဘာသာကို ကျွမ်းကျင်စွာ ပြောဆိုနိုင်သော မြန်မာနိုင်ငံသားတစ်ဦးအနေဖြင့် တရုတ်နိုင်ငံတွင် ကိုယ်တိုင် အလုပ်လုပ်ခဲ့ဖူးသော အတွေ့အကြုံရှိသောကြောင့် တရုတ် စီမံခန့်ခွဲသူများ၏ လိုအပ်ချက်များကို တိကျစွာ နားလည်နိုင်ပြီး မည်သည့် ပြင်းထန်သော အလုပ်ပတ်ဝန်းကျင်နှင့်မဆို အချိန်တိုအတွင်း အသားကျအောင် လုပ်ဆောင်နိုင်ပါသည်။ ထို့အပြင် ထိုင်းယာဉ်မောင်းလိုင်စင်ရှိပြီး ကားမောင်းကျွမ်းကျင်သောကြောင့် ကွင်းဆင်းတာဝန်များအတွက် အဆင်သင့်ရှိပါသည်။ အိမ်ထောင်သည် အမျိုးသားတစ်ဦးအနေဖြင့် ရေရှည် အသက်မွေးဝမ်းကျောင်း တိုးတက်မှုကို အလွန် အလေးထားပြီး အလားအလာရှိသော ကုမ္ပဏီတစ်ခုတွင် အခြေချကာ ကုမ္ပဏီနှင့်အတူ ကြီးပွားတိုးတက်လိုပါသည်။ ကျွန်ုပ်၏ လက်တွေ့ကျွမ်းကျင်မှုများကို အသုံးပြု၍ လူကြီးမင်းတို့၏ ကုမ္ပဏီအတွက် ထိရောက်ပြီး ယုံကြည်စိတ်ချရသော စကားပြန်နှင့် အထောက်အကူပြု လုပ်ငန်းများကို ဆောင်ရွက်ပေးနိုင်မည်ဟု ယုံကြည်ပါသည်။">
         早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格。在建筑、通信、制造等多行业的工作中，我始终保持积极主动的态度。作为精通中缅双语的缅甸籍人士，我有中国实地工作经验，能精准理解中方管理需求，并在短时间内适应任何高强度的工作环境。此外，我持有泰国驾照并能熟练驾车，可配合外勤需求。作为一名已婚男士，我非常看重长期的职业发展空间，期望能在有潜力的公司稳定扎根、踏实干事，与公司共同成长。希望能用我过硬的实际能力，为贵公司提供高效、稳定的翻译与支持工作。
       </p>
     </div>
@@ -631,36 +682,36 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   <section id="contact">
     <div class="section-label">
       <span class="num">04</span>
-      <h2 data-zh="联系方式" data-en="CONTACT">联系方式</h2>
+      <h2 data-zh="联系方式" data-en="CONTACT" data-my="ဆက်သွယ်ရန်">联系方式</h2>
     </div>
 
     <div class="contact-grid reveal">
       <a href="tel:0826039244" class="contact-card">
         <div class="contact-icon">📞</div>
         <div class="contact-info">
-          <label data-zh="电话（点击拨打）" data-en="PHONE (tap to call)">电话（点击拨打）</label>
+          <label data-zh="电话（点击拨打）" data-en="PHONE (tap to call)" data-my="ဖုန်း (နှိပ်၍ခေါ်ဆိုရန်)">电话（点击拨打）</label>
           <span>0826039244</span>
         </div>
       </a>
       <a href="https://line.me/ti/p/jonas888999" target="_blank" rel="noopener" class="contact-card">
         <div class="contact-icon">💬</div>
         <div class="contact-info">
-          <label data-zh="LINE（点击添加）" data-en="LINE (tap to add)">LINE（点击添加）</label>
+          <label data-zh="LINE（点击添加）" data-en="LINE (tap to add)" data-my="LINE (နှိပ်၍ပေါင်းထည့်ရန်)">LINE（点击添加）</label>
           <span>jonas888999</span>
         </div>
       </a>
       <a href="https://maps.google.com/?q=Bangkok,Thailand" target="_blank" rel="noopener" class="contact-card">
         <div class="contact-icon">📍</div>
         <div class="contact-info">
-          <label data-zh="位置（点击查看地图）" data-en="LOCATION (tap for map)">位置（点击查看地图）</label>
-          <span data-zh="泰国·曼谷" data-en="Bangkok, Thailand">泰国·曼谷</span>
+          <label data-zh="位置（点击查看地图）" data-en="LOCATION (tap for map)" data-my="တည်နေရာ (မြေပုံကြည့်ရန်)">位置（点击查看地图）</label>
+          <span data-zh="泰国·曼谷" data-en="Bangkok, Thailand" data-my="ထိုင်းနိုင်ငံ၊ ဘန်ကောက်">泰国·曼谷</span>
         </div>
       </a>
       <div class="contact-card" style="cursor:default;pointer-events:none;">
         <div class="contact-icon">⚡</div>
         <div class="contact-info">
-          <label data-zh="到岗时间" data-en="AVAILABILITY">到岗时间</label>
-          <span data-zh="随时可以上岗" data-en="Immediately Available">随时可以上岗</span>
+          <label data-zh="到岗时间" data-en="AVAILABILITY" data-my="အလုပ်စတင်နိုင်မည့် အချိန်">到岗时间</label>
+          <span data-zh="随时可以上岗" data-en="Immediately Available" data-my="ချက်ချင်း စတင်နိုင်သည်">随时可以上岗</span>
         </div>
       </div>
     </div>
@@ -669,25 +720,53 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
       <div class="cv-download-card-left">
         <div class="cv-download-icon">📄</div>
         <div>
-          <div class="cv-download-title" data-zh="下载完整简历" data-en="Download Full CV">下载完整简历</div>
-          <div class="cv-download-sub" data-zh="李恩伟_CV.pdf · 个人简历" data-en="LiEnwei_CV.pdf · Personal Resume">李恩伟_CV.pdf · 个人简历</div>
+          <div class="cv-download-title" data-zh="下载完整简历" data-en="Download Full CV" data-my="CV အပြည့်အစုံကို ဒေါင်းလုဒ်လုပ်ရန်">下载完整简历</div>
+          <div class="cv-download-sub" data-zh="李恩伟_CV.pdf · 个人简历" data-en="LiEnwei_CV.pdf · Personal Resume" data-my="LiEnwei_CV.pdf · ကိုယ်ရေးရာဇဝင်">李恩伟_CV.pdf · 个人简历</div>
         </div>
       </div>
-      <div class="cv-download-btn">⬇ <span data-zh="下载 PDF" data-en="Download PDF">下载 PDF</span></div>
+      <div class="cv-download-btn">⬇ <span data-zh="下载 PDF" data-en="Download PDF" data-my="PDF ဒေါင်းလုဒ်">下载 PDF</span></div>
     </a>
+  </section>
+
+  <section id="comments" class="alt">
+    <div class="section-label">
+      <span class="num">05</span>
+      <h2 data-zh="留言板" data-en="COMMENTS" data-my="မှတ်ချက်များ">留言板</h2>
+    </div>
+    
+    <div class="comment-container reveal">
+      <script src="https://giscus.app/client.js"
+              data-repo="minnyinyioo/jonas-cv"
+              data-repo-id="R_kgDOR_r_CQ"
+              data-category="Announcements"
+              data-category-id="DIC_kwDOR_r_Cc4C6wY6"
+              data-mapping="pathname"
+              data-strict="0"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="bottom"
+              data-theme="preferred_color_scheme"
+              data-lang="zh-CN"
+              crossorigin="anonymous"
+              async>
+      </script>
+    </div>
   </section>
 
 </main>
 
 <footer>
   <div class="footer-text">© 2026 李恩伟 · LI ENWEI</div>
-  <div class="footer-text" data-zh="个人简历 · 曼谷" data-en="Personal Resume · Bangkok">个人简历 · 曼谷</div>
+  <div class="footer-text" data-zh="个人简历 · 曼谷" data-en="Personal Resume · Bangkok" data-my="ကိုယ်ရေးရာဇဝင် · ဘန်ကောက်">个人简历 · 曼谷</div>
 </footer>
 
 <script>
-  /* ── 主题切换 ── */
+  /* ── 主题切换 (SVG 图标版) ── */
   const html = document.documentElement;
   const themeBtn = document.getElementById('theme-btn');
+  
+  const sunSvg = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+  const moonSvg = `<svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
 
   let currentTheme = localStorage.getItem('theme') || 'dark';
   applyTheme(currentTheme);
@@ -695,26 +774,31 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   function applyTheme(theme) {
     currentTheme = theme;
     html.setAttribute('data-theme', theme);
-    themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
-    themeBtn.title = theme === 'dark' ? '切换日间模式' : '切换夜间模式';
+    themeBtn.innerHTML = theme === 'dark' ? sunSvg : moonSvg;
     localStorage.setItem('theme', theme);
   }
-
-  function toggleTheme() {
-    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  
+  function toggleTheme() { 
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); 
   }
 
-  /* ── 语言切换 ── */
+  /* ── 语言切换 (三语滑块版) ── */
+  const langs = ['zh', 'en', 'my'];
   let currentLang = 'zh';
+  
+  function toggleLang() {
+    let currIdx = langs.indexOf(currentLang);
+    let nextIdx = (currIdx + 1) % langs.length;
+    setLang(langs[nextIdx]);
+  }
+
   function setLang(lang) {
     currentLang = lang;
-    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    html.lang = lang; 
     document.querySelectorAll('[data-zh]').forEach(el => {
       const val = el.getAttribute('data-' + lang);
       if (val) el.textContent = val;
     });
-    html.lang = lang === 'zh' ? 'zh' : 'en';
   }
 
   /* ── 滚动动画 ── */
