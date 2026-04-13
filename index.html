@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>李恩伟 · Li Enwei | 个人简历</title>
-<link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+Myanmar:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 
 /* ═══════════════════════════════════════
@@ -76,8 +76,8 @@ background: var(--bg);
 body {
 background: var(--bg);
 color: var(--text);
-/* 加入了 Padauk 作为缅甸语字体 */
-font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+/* 加入了 Noto Serif Myanmar 作为缅甸语字体 */
+font-family: 'Noto Sans SC', 'Noto Serif Myanmar', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
 overflow-x: hidden;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -85,14 +85,14 @@ text-rendering: optimizeLegibility;
 transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* 缅甸语特殊排版优化：使用 Padauk 字体 */
+/* 缅甸语特殊排版优化：使用 Noto Serif Myanmar 字体 */
 html[lang="my"] body {
-  font-family: 'Padauk', 'Noto Sans SC', sans-serif;
+  font-family: 'Noto Serif Myanmar', 'Noto Sans SC', serif;
   line-height: 1.8;
   word-break: break-word;
 }
 html[lang="my"] .hero-title, html[lang="my"] .exp-role, html[lang="my"] h2, html[lang="my"] h3 {
-  font-family: 'Padauk', sans-serif;
+  font-family: 'Noto Serif Myanmar', serif;
   font-weight: 700;
 }
 
@@ -361,7 +361,7 @@ transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 /* Language bars */
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 40px; }
 .lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.lang-name { font-family: 'Noto Sans SC', 'Padauk', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+.lang-name { font-family: 'Noto Sans SC', 'Noto Serif Myanmar', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
 .lang-level { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 1px; }
 .lang-bar { height: 6px; background: var(--bg3); border-radius: 50px; overflow: hidden; border: 1px solid var(--border); }
 .lang-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 0 8px var(--accent); animation: bar-fill 1.5s ease both; animation-play-state: paused; }
@@ -388,7 +388,7 @@ font-family: 'Space Mono', monospace; font-size: 10px;
 color: var(--accent); letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase;
 }
 .exp-role {
-font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', sans-serif;
+font-family: 'Noto Sans SC', 'Noto Serif Myanmar', 'PingFang SC', sans-serif;
 font-size: clamp(17px, 2.2vw, 22px); font-weight: 700; margin-bottom: 18px; color: var(--text);
 }
 .exp-bullets { list-style: none; }
