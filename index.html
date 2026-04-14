@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>李恩伟 · Li Enwei | 个人简历</title>
-<link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Myanmar:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 
 /* ═══════════════════════════════════════
@@ -76,8 +76,7 @@ background: var(--bg);
 body {
 background: var(--bg);
 color: var(--text);
-/* 加入了 Padauk 作为缅甸语字体 */
-font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+font-family: 'Noto Sans SC', 'Noto Serif Myanmar', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
 overflow-x: hidden;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -85,14 +84,14 @@ text-rendering: optimizeLegibility;
 transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* 缅甸语特殊排版优化：使用 Padauk 字体 */
+/* 缅甸语特殊排版优化：使用 Noto Serif Myanmar 字体 */
 html[lang="my"] body {
-  font-family: 'Padauk', 'Noto Sans SC', sans-serif;
+  font-family: 'Noto Serif Myanmar', 'Noto Sans SC', serif;
   line-height: 1.8;
   word-break: break-word;
 }
 html[lang="my"] .hero-title, html[lang="my"] .exp-role, html[lang="my"] h2, html[lang="my"] h3 {
-  font-family: 'Padauk', sans-serif;
+  font-family: 'Noto Serif Myanmar', serif;
   font-weight: 700;
 }
 
@@ -361,7 +360,7 @@ transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 /* Language bars */
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 40px; }
 .lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.lang-name { font-family: 'Noto Sans SC', 'Padauk', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+.lang-name { font-family: 'Noto Sans SC', 'Noto Serif Myanmar', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
 .lang-level { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 1px; }
 .lang-bar { height: 6px; background: var(--bg3); border-radius: 50px; overflow: hidden; border: 1px solid var(--border); }
 .lang-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 0 8px var(--accent); animation: bar-fill 1.5s ease both; animation-play-state: paused; }
@@ -388,7 +387,7 @@ font-family: 'Space Mono', monospace; font-size: 10px;
 color: var(--accent); letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase;
 }
 .exp-role {
-font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', sans-serif;
+font-family: 'Noto Sans SC', 'Noto Serif Myanmar', 'PingFang SC', sans-serif;
 font-size: clamp(17px, 2.2vw, 22px); font-weight: 700; margin-bottom: 18px; color: var(--text);
 }
 .exp-bullets { list-style: none; }
@@ -483,10 +482,35 @@ transition: background 0.4s ease;
 }
 .stat-divider { color: var(--border); }
 .wau-widget img { vertical-align: middle; border-radius: 4px; height: 18px; }
-/* 让实时统计挂件在黑夜模式下反色，完美融入赛博朋克风 */
 [data-theme="dark"] .wau-widget img { filter: invert(0.9) hue-rotate(180deg); }
 
 #busuanzi_value_site_pv { font-family: 'Orbitron', monospace; color: var(--accent); font-weight: 700; margin-left: 4px; }
+
+.footer-warning {
+  width: 100%; text-align: center; margin-top: 20px; font-size: 11px;
+  color: #ff4d4d; opacity: 0.85; font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+警告弹窗样式 (Warning Modal)
+═══════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(5, 10, 15, 0.85); backdrop-filter: blur(8px);
+  z-index: 9999; display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.modal-box {
+  background: var(--card-bg); border: 1px solid #ff4d4d; border-radius: 16px;
+  padding: 32px 40px; max-width: 520px; width: 90%; text-align: center;
+  position: relative; box-shadow: 0 0 30px rgba(255, 77, 77, 0.2);
+  transform: translateY(0); transition: transform 0.4s ease;
+}
+.modal-close {
+  position: absolute; top: 14px; right: 18px; background: transparent;
+  border: none; color: var(--text-dim); font-size: 26px; cursor: pointer; transition: color 0.3s;
+}
+.modal-close:hover { color: #ff4d4d; }
 
 /* ═══════════════════════════════════════
 Animations & Utils
@@ -508,7 +532,6 @@ nav { padding: 14px 20px; }
 footer { padding: 28px 20px; flex-direction: column; text-align: center; }
 .cv-download-card { flex-direction: column; align-items: flex-start; }
 
-/* 新版顶部控制栏适配 (三语) */
 .top-controls { top: 16px; right: 20px; padding: 4px 6px 4px 10px; gap: 10px; }
 .lang-toggle { width: 80px; height: 24px; }
 .lang-slider { width: 24px; height: 18px; }
@@ -517,11 +540,35 @@ html[lang="my"] .lang-slider { transform: translateX(54px); }
 .lang-text { font-size: 10px; }
 .theme-btn { width: 28px; height: 28px; }
 .theme-btn svg { width: 15px; height: 15px; }
+
+.modal-box { padding: 26px 20px; }
 }
 </style>
 
 </head>
 <body>
+
+<div id="warning-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeWarningModal()" title="Close">×</button>
+    
+    <div style="line-height: 1.4; margin-bottom: 24px;">
+      <span style="font-family: 'Orbitron', monospace; font-size: 22px; font-weight: 700; color: #ff4d4d; letter-spacing: 1px;">⚠️ 严正声明</span><br>
+      <span style="font-size: 14px; font-family: 'Space Mono', monospace; letter-spacing: 2px; color: #ff8080;">LEGAL WARNING</span><br>
+      <span style="font-size: 16px; font-family: 'Noto Serif Myanmar', serif; color: #ff8080; font-weight: 700;">ဥပဒေရေးရာ သတိပေးချက်</span>
+    </div>
+    
+    <div style="text-align: left; font-size: 14px; background: rgba(255, 77, 77, 0.05); padding: 16px; border-radius: 8px; border-left: 3px solid #ff4d4d; margin-bottom: 28px; color: var(--text); line-height: 1.7;">
+      <div style="margin-bottom: 12px;"><strong>[ZH]</strong> 诈骗、非法活动及人贩子请勿打扰！任何盗用本人个人信息或未经授权贩卖资料的行为，必将追究其法律责任！</div>
+      <div style="margin-bottom: 12px; font-family: 'Space Mono', monospace; font-size: 12.5px;"><strong>[EN]</strong> Scammers, illegal operations, and human traffickers keep away! Any identity theft or unauthorized sale of this personal data will result in strict legal action!</div>
+      <div style="font-family: 'Noto Serif Myanmar', serif;"><strong>[MY]</strong> လိမ်လည်သူများ၊ တရားမဝင် လုပ်ငန်းများနှင့် လူကုန်ကူးသူများ အဆက်အသွယ်မလုပ်ပါနှင့်။ ကိုယ်ရေးကိုယ်တာ အချက်အလက်များကို ခိုးယူခြင်း သို့မဟုတ် ခွင့်ပြုချက်မရှိဘဲ ရောင်းချခြင်းများကို ဥပဒေအရ ပြင်းထန်စွာ အရေးယူသွားမည်ဖြစ်ပါသည်။</div>
+    </div>
+    
+    <button class="btn-primary" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #ff4d4d; color: white; box-shadow: 0 0 20px rgba(255,77,77,0.3); padding: 12px 20px; gap: 4px;" onclick="closeWarningModal()">
+      <span style="font-size: 14px; font-weight: 700;">我已了解 / I Understand / နားလည်ပါသည်</span>
+    </button>
+  </div>
+</div>
 
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
@@ -783,9 +830,25 @@ html[lang="my"] .lang-slider { transform: translateX(54px); }
       </span>
     </span>
   </div>
+  
+  <div class="footer-warning">
+    <span data-zh="⚠️ 严正声明：诈骗、非法活动及人贩子勿扰！盗用或贩卖本人资料必追究法律责任。" 
+          data-en="⚠️ WARNING: Scammers & human traffickers keep away! Identity theft or data selling will be strictly prosecuted." 
+          data-my="⚠️ သတိပေးချက် - လိမ်လည်သူများ၊ တရားမဝင်လုပ်ငန်းများနှင့် လူကုန်ကူးသူများ အဆက်အသွယ်မလုပ်ပါနှင့်။ အချက်အလက် ခိုးယူခြင်း သို့မဟုတ် ရောင်းချခြင်းကို ဥပဒေအရ အရေးယူမည်။">
+      ⚠️ 严正声明：诈骗、非法活动及人贩子勿扰！盗用或贩卖本人资料必追究法律责任。
+    </span>
+  </div>
 </footer>
 
 <script>
+  /* ── 弹窗关闭逻辑 ── */
+  function closeWarningModal() {
+    const modal = document.getElementById('warning-modal');
+    modal.style.opacity = '0';
+    modal.style.visibility = 'hidden';
+    setTimeout(() => modal.style.display = 'none', 400); 
+  }
+
   /* ── 主题切换 (SVG 图标版) ── */
   const html = document.documentElement;
   const themeBtn = document.getElementById('theme-btn');
