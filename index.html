@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>李恩伟 · Li Enwei | 个人简历</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+Myanmar:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 
 /* ═══════════════════════════════════════
@@ -76,8 +76,8 @@ background: var(--bg);
 body {
 background: var(--bg);
 color: var(--text);
-/* 加入了 Noto Serif Myanmar 作为缅甸语字体 */
-font-family: 'Noto Sans SC', 'Noto Serif Myanmar', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+/* 加入了 Padauk 作为缅甸语字体 */
+font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
 overflow-x: hidden;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -85,14 +85,14 @@ text-rendering: optimizeLegibility;
 transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* 缅甸语特殊排版优化：使用 Noto Serif Myanmar 字体 */
+/* 缅甸语特殊排版优化：使用 Padauk 字体 */
 html[lang="my"] body {
-  font-family: 'Noto Serif Myanmar', 'Noto Sans SC', serif;
+  font-family: 'Padauk', 'Noto Sans SC', sans-serif;
   line-height: 1.8;
   word-break: break-word;
 }
 html[lang="my"] .hero-title, html[lang="my"] .exp-role, html[lang="my"] h2, html[lang="my"] h3 {
-  font-family: 'Noto Serif Myanmar', serif;
+  font-family: 'Padauk', sans-serif;
   font-weight: 700;
 }
 
@@ -361,7 +361,7 @@ transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 /* Language bars */
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 40px; }
 .lang-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.lang-name { font-family: 'Noto Sans SC', 'Noto Serif Myanmar', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+.lang-name { font-family: 'Noto Sans SC', 'Padauk', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
 .lang-level { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 1px; }
 .lang-bar { height: 6px; background: var(--bg3); border-radius: 50px; overflow: hidden; border: 1px solid var(--border); }
 .lang-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 0 8px var(--accent); animation: bar-fill 1.5s ease both; animation-play-state: paused; }
@@ -388,7 +388,7 @@ font-family: 'Space Mono', monospace; font-size: 10px;
 color: var(--accent); letter-spacing: 1.5px; margin-bottom: 6px; text-transform: uppercase;
 }
 .exp-role {
-font-family: 'Noto Sans SC', 'Noto Serif Myanmar', 'PingFang SC', sans-serif;
+font-family: 'Noto Sans SC', 'Padauk', 'PingFang SC', sans-serif;
 font-size: clamp(17px, 2.2vw, 22px); font-weight: 700; margin-bottom: 18px; color: var(--text);
 }
 .exp-bullets { list-style: none; }
@@ -465,7 +465,7 @@ Giscus 留言板样式
 .comment-container { max-width: 800px; margin: 0 auto; min-height: 300px; }
 
 /* ═══════════════════════════════════════
-Footer
+Footer & 统计区域样式
 ═══════════════════════════════════════ */
 footer {
 padding: 36px 80px; border-top: 1px solid var(--border);
@@ -475,6 +475,18 @@ background: var(--bg2);
 transition: background 0.4s ease;
 }
 .footer-text { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+
+.footer-stats {
+  width: 100%; text-align: center; margin-top: 16px; opacity: 0.85; 
+  display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-dim);
+}
+.stat-divider { color: var(--border); }
+.wau-widget img { vertical-align: middle; border-radius: 4px; height: 18px; }
+/* 让实时统计挂件在黑夜模式下反色，完美融入赛博朋克风 */
+[data-theme="dark"] .wau-widget img { filter: invert(0.9) hue-rotate(180deg); }
+
+#busuanzi_value_site_pv { font-family: 'Orbitron', monospace; color: var(--accent); font-weight: 700; margin-left: 4px; }
 
 /* ═══════════════════════════════════════
 Animations & Utils
@@ -756,8 +768,21 @@ html[lang="my"] .lang-slider { transform: translateX(54px); }
 </main>
 
 <footer>
-  <div class="footer-text">© 2026 Make by  · LI ENWEI</div>
-  <div class="footer-text" data-zh="个人简历 · 曼谷" data-en="Personal Resume · Bangkok" data-my="Personal Resume">个人简历 · 曼谷</div>
+  <div class="footer-text">© 2026 李恩伟 · LI ENWEI</div>
+  <div class="footer-text" data-zh="个人简历 · 曼谷" data-en="Personal Resume · Bangkok" data-my="ကိုယ်ရေးရာဇဝင် · ဘန်ကောက်">个人简历 · 曼谷</div>
+  
+  <div class="footer-stats">
+    <span id="busuanzi_container_site_pv" style="display:none;">
+      <span data-zh="👁️ 历史总访问：" data-en="👁️ Total Views: " data-my="👁️ ကြည့်ရှုသူ စုစုပေါင်း: ">👁️ 历史总访问：</span><span id="busuanzi_value_site_pv"></span>
+    </span>
+    <span class="stat-divider">|</span>
+    <span class="realtime-stat">
+      <span data-zh="🟢 当前实时在线：" data-en="🟢 Online Now: " data-my="🟢 လက်ရှိ အွန်လိုင်း: ">🟢 当前实时在线：</span>
+      <span class="wau-widget">
+        <script id="_wau6zq">var _wau = _wau || []; _wau.push(["small", "jonascv2026", "6zq"]);</script><script async src="//waust.at/s.js"></script>
+      </span>
+    </span>
+  </div>
 </footer>
 
 <script>
@@ -820,6 +845,8 @@ html[lang="my"] .lang-slider { transform: translateX(54px); }
   }, { threshold: 0.3 });
   document.querySelectorAll('.lang-grid').forEach(el => langObs.observe(el));
 </script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 </body>
 </html>
