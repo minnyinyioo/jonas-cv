@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JONAS LI · 李恩伟 | 个人简历</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Myanmar:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<!-- Font Awesome 6 (真实图标库) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
 
 /* ═══════════════════════════════════════
@@ -178,6 +180,7 @@ font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px;
 text-decoration: none; cursor: pointer; transition: all 0.3s ease;
 white-space: nowrap;
 }
+.nav-cv-btn i { font-size: 10px; }
 .nav-cv-btn:hover { background: var(--border-soft); box-shadow: var(--glow); transform: translateY(-1px); }
 
 .nav-right-controls { display: flex; align-items: center; gap: 12px; }
@@ -246,6 +249,7 @@ font-family: 'Space Mono', monospace; font-size: 11px;
 color: var(--accent); letter-spacing: 2px;
 margin-bottom: 32px; animation: fadeInUp 0.6s ease both;
 }
+.hero-tag i { font-size: 10px; }
 
 .hero-name {
 font-family: 'Orbitron', monospace;
@@ -270,46 +274,41 @@ display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px;
 animation: fadeInUp 0.6s 0.3s ease both;
 }
 .meta-chip {
-display: flex; align-items: center; gap: 8px;
+display: inline-flex; align-items: center; gap: 8px;
 background: var(--card-bg); border: 1px solid var(--border);
 border-radius: 8px; padding: 8px 14px;
 font-size: 13px; color: var(--text-dim);
 backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 transition: all 0.3s ease;
 }
+.meta-chip i { font-size: 12px; width: 1.2em; }
 .meta-chip:hover { border-color: var(--accent); color: var(--accent); box-shadow: var(--glow); transform: translateY(-2px); }
 
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeInUp 0.6s 0.4s ease both; }
 
-.btn-primary {
+.btn-primary, .btn-secondary, .btn-download-cv {
 display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
-background: var(--accent); color: #050a0f; border: none; border-radius: 8px;
+border-radius: 8px;
 font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px;
 text-decoration: none; cursor: pointer; transition: all 0.3s ease;
+}
+.btn-primary {
+background: var(--accent); color: #050a0f; border: none;
 box-shadow: 0 0 20px rgba(0,212,255,0.35);
 }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 36px rgba(0,212,255,0.55); }
-
 .btn-secondary {
-display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
 background: transparent; color: var(--text); border: 1px solid var(--border);
-border-radius: 8px;
-font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;
-text-decoration: none; cursor: pointer; transition: all 0.3s ease;
 }
 .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-
 .btn-download-cv {
-display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
 background: transparent; color: var(--accent3); border: 1px solid var(--accent3);
-border-radius: 8px;
-font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px;
-text-decoration: none; cursor: pointer; transition: all 0.3s ease;
 }
 .btn-download-cv:hover { background: rgba(0,255,157,0.07); box-shadow: 0 0 20px rgba(0,255,157,0.25); transform: translateY(-3px); }
-.dl-arrow { animation: bounce-down 1.4s ease-in-out infinite; display: inline-block; }
+.dl-arrow { display: inline-block; animation: bounce-down 1.4s ease-in-out infinite; }
 @keyframes bounce-down { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 
+/* Hero visual */
 .hero-visual {
 position: absolute; right: 80px; top: 50%; transform: translateY(-50%);
 width: 320px; height: 320px; animation: fadeInUp 0.6s 0.5s ease both;
@@ -361,7 +360,7 @@ transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 }
 .skill-card:hover::before { transform: scaleX(1); }
 .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow), var(--glow); background: var(--card-hover); }
-.skill-icon { font-size: 30px; margin-bottom: 14px; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+.skill-icon { font-size: 30px; margin-bottom: 14px; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); line-height: 1; }
 .skill-card h3 { font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
 .skill-card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.8; min-height: 60px; }
 
@@ -430,6 +429,7 @@ width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
 background: var(--bg3); border: 1px solid var(--border);
 display: flex; align-items: center; justify-content: center; font-size: 20px;
 }
+.contact-icon i { font-size: 22px; }
 .contact-info label {
 display: block; font-family: 'Space Mono', monospace; font-size: 9px;
 color: var(--text-muted); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase; cursor: pointer;
@@ -486,6 +486,7 @@ transition: background 0.4s ease;
   display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;
   font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-dim);
 }
+.footer-stats i { margin-right: 4px; }
 .stat-divider { color: var(--border); }
 .wau-widget img { vertical-align: middle; border-radius: 4px; height: 18px; }
 [data-theme="dark"] .wau-widget img { filter: invert(0.9) hue-rotate(180deg); }
@@ -494,6 +495,7 @@ transition: background 0.4s ease;
   width: 100%; text-align: center; margin-top: 20px; font-size: 11px;
   color: #ff4d4d; opacity: 0.85; font-weight: 500;
 }
+.footer-warning i { margin-right: 4px; }
 
 /* Modal */
 .modal-overlay {
@@ -509,6 +511,7 @@ transition: background 0.4s ease;
 }
 .modal-close { position: absolute; top: 14px; right: 18px; background: transparent; border: none; color: var(--text-dim); font-size: 26px; cursor: pointer; transition: color 0.3s; }
 .modal-close:hover { color: #ff4d4d; }
+.modal-box .btn-primary i { margin-right: 6px; }
 
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -539,7 +542,7 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   <div class="modal-box">
     <button class="modal-close" onclick="closeWarningModal()" title="Close">×</button>
     <div style="line-height: 1.4; margin-bottom: 24px;">
-      <span style="font-family: 'Orbitron', monospace; font-size: 22px; font-weight: 700; color: #ff4d4d; letter-spacing: 1px;">⚠️ 严正声明</span><br>
+      <span style="font-family: 'Orbitron', monospace; font-size: 22px; font-weight: 700; color: #ff4d4d; letter-spacing: 1px;"><i class="fas fa-triangle-exclamation"></i> 严正声明</span><br>
       <span style="font-size: 14px; font-family: 'Space Mono', monospace; letter-spacing: 2px; color: #ff8080;">LEGAL WARNING</span><br>
       <span style="font-size: 16px; font-family: 'Noto Serif Myanmar', serif; color: #ff8080; font-weight: 700;">ဥပဒေရေးရာ သတိပေးချက်</span>
     </div>
@@ -548,7 +551,7 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
       <div style="margin: 12px 0; font-family: 'Space Mono', monospace; font-size: 12.5px;"><strong>[EN]</strong> Scammers, illegal operations, and human traffickers keep away! Any identity theft or unauthorized sale of this personal data will result in strict legal action!</div>
       <div style="font-family: 'Noto Serif Myanmar', serif;"><strong>[MY]</strong> လိမ်လည်သူများ၊ တရားမဝင် လုပ်ငန်းများနှင့် လူကုန်ကူးသူများ အဆက်အသွယ်မလုပ်ပါနှင့်။ ကိုယ်ရေးကိုယ်တာ အချက်အလက်များကို ခိုးယူခြင်း သို့မဟုတ် ခွင့်ပြုချက်မရှိဘဲ ရောင်းချခြင်းများကို ဥပဒေအရ ပြင်းထန်စွာ အရေးယူသွားမည်ဖြစ်ပါသည်။</div>
     </div>
-    <button class="btn-primary" style="width:100%; background:#ff4d4d; color:white; box-shadow:0 0 20px rgba(255,77,77,0.3);" onclick="closeWarningModal()"><span>我已了解 / I Understand / နားလည်ပါသည်</span></button>
+    <button class="btn-primary" style="width:100%; background:#ff4d4d; color:white; box-shadow:0 0 20px rgba(255,77,77,0.3);" onclick="closeWarningModal()"><i class="fas fa-check-circle"></i> <span>我已了解 / I Understand / နားလည်ပါသည်</span></button>
   </div>
 </div>
 
@@ -557,7 +560,7 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
 <nav>
   <div class="nav-left">
     <div class="nav-logo">LEW</div>
-    <a href="JONAS_CV_Update.pdf" download="JONAS_CV_Update.pdf" class="nav-cv-btn">⬇ <span data-zh="下载 CV" data-en="Download CV" data-my="CV ဒေါင်းလုဒ်">下载 CV</span></a>
+    <a href="JONAS_CV_Update.pdf" download="JONAS_CV_Update.pdf" class="nav-cv-btn"><i class="fas fa-download"></i> <span data-zh="下载 CV" data-en="Download CV" data-my="CV ဒေါင်းလုဒ်">下载 CV</span></a>
   </div>
   <div class="nav-right-controls">
     <div class="lang-dropdown" id="lang-dropdown">
@@ -576,57 +579,90 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
 <main>
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-tag" data-zh="中缅翻译 · 曼谷" data-en="ZH-MY Professional Interpreter · Bangkok" data-my="တရုတ်-မြန်မာ စကားပြန် · ဘန်ကောက်">中缅翻译 · 曼谷</div>
+      <div class="hero-tag"><i class="fas fa-language"></i> <span data-zh="中缅翻译 · 曼谷" data-en="Chinese-Burmese Translator · Bangkok" data-my="တရုတ်-မြန်မာ ဘာသာပြန် · ဘန်ကောက်">中缅翻译 · 曼谷</span></div>
       <div class="hero-name">李恩伟 | JONAS </div>
       
-      <div class="hero-title" data-zh="高级中缅项目协调专员 / 现场主管" data-en="Senior Chinese-Myanmar Project Coordinator / Site Manager" data-my="အဆင့်မြင့် တရုတ်-မြန်မာ ပရောဂျက် ညှိနှိုင်းရေးမှူး / လုပ်ငန်းခွင် မန်နေဂျာ">高级中缅项目协调专员 / 现场主管</div>
+      <div class="hero-title" data-zh="高级中缅项目协调专员 / 现场主管" data-en="Senior Chinese-Burmese Project Coordinator / Site Supervisor" data-my="တရုတ်-မြန်မာ စီမံကိန်းညှိနှိုင်းရေးမှူး / ဆိုက်ကြီးကြပ်ရေးမှူး">高级中缅项目协调专员 / 现场主管</div>
       <div class="hero-meta">
-        <div class="meta-chip"><span>📍</span><span data-zh="泰国·曼谷" data-en="Bangkok, Thailand" data-my="ထိုင်းနိုင်ငံ၊ ဘန်ကောက်">泰国·曼谷</span></div>
-        <div class="meta-chip"><span>🌐</span><span data-zh="缅甸国籍" data-en="Myanmar Nationality" data-my="မြန်မာနိုင်ငံသား">缅甸国籍</span></div>
-        <div class="meta-chip"><span>🎓</span><span data-zh="缅文中学及高中学历" data-en="Myanmar Middle & High School" data-my="မြန်မာစာ အလယ်တန်းနှင့် အထက်တန်း အောင်မြင်">缅文中学及高中学历</span></div>
-        <div class="meta-chip"><span>🚗</span><span data-zh="持泰国合法驾照 (10年+经验)" data-en="Valid Thai Driver's License (10+ Yrs)" data-my="တရားဝင် ထိုင်းယာဉ်မောင်းလိုင်စင် (၁၀ နှစ်+)">持泰国合法驾照 (10年+经验)</span></div>
-        <div class="meta-chip"><span>💼</span><span data-zh="37岁 · 已婚" data-en="37 yrs · Married" data-my="အသက် ၃၇ နှစ် · အိမ်ထောင်ရှိ">37岁 · 已婚</span></div>
-        <div class="meta-chip"><span>💰</span><span data-zh="期望薪资 30,000+ THB/月 (包食宿)" data-en="Expected 30,000+ THB/mo (Accomm. & Meals)" data-my="မျှော်မှန်းလစာ ၃၀,၀၀၀+ ဘတ်/လ (နေထိုင်စားသောက်စရိတ် ပါဝင်)">期望薪资 30,000+ THB/月 (包食宿)</span></div>
-        <!-- 新增：合法签证工作证 三语 -->
-        <div class="meta-chip"><span>📄</span><span data-zh="持有合法签证工作证" data-en="Valid Visa & Work Permit" data-my="တရားဝင် ဗီဇာနှင့် အလုပ်လုပ်ခွင့်">持有合法签证工作证</span></div>
+        <div class="meta-chip"><i class="fas fa-map-marker-alt"></i> <span data-zh="泰国·曼谷" data-en="Bangkok, Thailand" data-my="ဘန်ကောက်၊ ထိုင်းနိုင်ငံ">泰国·曼谷</span></div>
+        <div class="meta-chip"><i class="fas fa-globe-asia"></i> <span data-zh="缅甸国籍" data-en="Myanmar Nationality" data-my="မြန်မာနိုင်ငံသား">缅甸国籍</span></div>
+        <div class="meta-chip"><i class="fas fa-graduation-cap"></i> <span data-zh="缅文中学及高中学历" data-en="Middle and High School Education in Myanmar" data-my="မြန်မာနိုင်ငံတွင် အလယ်တန်းနှင့် အထက်တန်းပညာ သင်ကြားခဲ့သည်">缅文中学及高中学历</span></div>
+        <div class="meta-chip"><i class="fas fa-car"></i> <span data-zh="持泰国合法驾照 (10年+经验)" data-en="Valid Thai Driver's License (10+ years of experience)" data-my="တရားဝင် ထိုင်းယာဉ်မောင်းလိုင်စင် (အတွေ့အကြုံ ၁၀ နှစ်ကျော်)">持泰国合法驾照 (10年+经验)</span></div>
+        <div class="meta-chip"><i class="fas fa-briefcase"></i> <span data-zh="37岁 · 已婚" data-en="Age 37 · Married" data-my="အသက် ၃၇ နှစ် · အိမ်ထောင်ရှိ">37岁 · 已婚</span></div>
+        <div class="meta-chip"><i class="fas fa-coins"></i> <span data-zh="期望薪资 30,000+ THB/月 (包食宿)" data-en="Expected Salary: 30,000+ THB/month (including room and board)" data-my="မျှော်မှန်းလစာ - ၃၀,၀၀၀+ ဘတ်/လ (စရိတ်ငြိမ်း)">期望薪资 30,000+ THB/月 (包食宿)</span></div>
+        <div class="meta-chip"><i class="fas fa-id-card"></i> <span data-zh="持有合法签证工作证" data-en="Valid Visa & Work Permit" data-my="တရားဝင် ဗီဇာနှင့် အလုပ်လုပ်ခွင့်ပန်းရောင်ကဒ်ရှိသည်">持有合法签证工作证</span></div>
       </div>
       <div class="hero-cta">
-        <a href="tel:0826039244" class="btn-primary">📞 <span data-zh="立即联系" data-en="Contact Now" data-my="ယခု ဆက်သွယ်ရန်">立即联系</span></a>
-        <a href="#experience" class="btn-secondary">→ <span data-zh="查看经历" data-en="View Experience" data-my="လုပ်ငန်းအတွေ့အကြုံ ကြည့်ရန်">查看经历</span></a>
-        <a href="JONAS_CV_Update.pdf" download="JONAS_CV_Update.pdf" class="btn-download-cv"><span class="dl-arrow">⬇</span><span data-zh="下载简历 PDF" data-en="Download CV PDF" data-my="CV PDF ဒေါင်းလုဒ်">下载简历 PDF</span></a>
+        <a href="tel:0826039244" class="btn-primary"><i class="fas fa-phone-alt"></i> <span data-zh="立即联系" data-en="Contact Now" data-my="ယခုဆက်သွယ်ရန်">立即联系</span></a>
+        <a href="#experience" class="btn-secondary"><i class="fas fa-arrow-right"></i> <span data-zh="查看经历" data-en="View Experience" data-my="လုပ်ငန်းအတွေ့အကြုံကြည့်ရန်">查看经历</span></a>
+        <a href="JONAS_CV_Update.pdf" download="JONAS_CV_Update.pdf" class="btn-download-cv"><span class="dl-arrow"><i class="fas fa-arrow-down"></i></span> <span data-zh="下载简历 PDF" data-en="Download Resume PDF" data-my="ကိုယ်ရေးရာဇဝင် PDF ဒေါင်းလုဒ်ဆွဲရန်">下载简历 PDF</span></a>
       </div>
     </div>
     <div class="hero-visual"><div class="avatar-ring"></div><div class="avatar-ring-2"></div><div class="avatar-placeholder">李</div></div>
   </section>
 
-  <!-- 语言与技能部分保持不变（为简洁起见省略重复内容，实际原样） -->
-  <section class="alt"><div class="section-label"><span class="num">01</span><h2 data-zh="语言与技能" data-en="LANGUAGES & SKILLS" data-my="ဘာသာစကားနှင့် ကျွမ်းကျင်မှုများ">语言与技能</h2></div><div class="lang-grid reveal"><div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="缅甸语" data-en="Burmese" data-my="မြန်မာစကား">缅甸语</div><div class="lang-level" data-zh="母语" data-en="NATIVE" data-my="မိခင်ဘာသာစကား">母语</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:100%;width:0"></div></div></div><div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="中文（普通话）" data-en="Chinese (Mandarin)" data-my="တရုတ်စကား (မန်ဒရင်း)">中文（普通话）</div><div class="lang-level" data-zh="流利 / 商务交渉" data-en="FLUENT" data-my="ကျွမ်းကျင်">流利 / 商务交渉</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:95%;width:0"></div></div></div><div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="泰语" data-en="Thai" data-my="ထိုင်းစကား">泰语</div><div class="lang-level" data-zh="基础日常沟通" data-en="BASIC DAILY COMMUNICATION" data-my="အခြေခံ နေ့စဉ်ပြော">基础日常沟通</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:45%;width:0"></div></div></div><div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="英语" data-en="English" data-my="အင်္ဂလိပ်စကား">英语</div><div class="lang-level" data-zh="基础日常沟通" data-en="BASIC DAILY COMMUNICATION" data-my="အခြေခံ နေ့စဉ်ပြော">基础日常沟通</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:40%;width:0"></div></div></div></div><div class="skills-grid" style="margin-top:56px"><div class="skill-card reveal"><span class="skill-icon">🚨</span><h3>危机攻坚与问题解决</h3><p class="type-text" data-zh="在复杂的多边协作环境中快速定位问题，出具解决方案，确保工程与业务免受突发事件影响。">在复杂的多边协作环境中快速定位问题，出具解决方案，确保工程与业务免受突发事件影响。</p></div><div class="skill-card reveal"><span class="skill-icon">🏗️</span><h3>项目与现场操盘</h3><p class="type-text" data-zh="深耕建筑施工、通信基建等领域，精通分包商统筹协作与项目全流程推进落地。">深耕建筑施工、通信基建等领域，精通分包商统筹协作与项目全流程推进落地。</p></div><div class="skill-card reveal"><span class="skill-icon">🏛️</span><h3>政企军公关与外联</h3><p class="type-text" data-zh="具备丰富的外联对接经验，可高效对接军方、市政及各大国家部委，跨越行政审批障碍。">具备丰富的外联对接经验，可高效对接军方、市政及各大国家部委，跨越行政审批障碍。</p></div><div class="skill-card reveal"><span class="skill-icon">👥</span><h3>运营领导力 (300+ 团队)</h3><p class="type-text" data-zh="具备大规模劳动力领导经验（最高统筹300+人员），精准进行资源调拨及质量、安全把控。">具备大规模劳动力领导经验（最高统筹300+人员），精准进行资源调拨及质量、安全把控。</p></div><div class="skill-card reveal"><span class="skill-icon">🚗</span><h3>机动外勤与通勤</h3><p class="type-text" data-zh="持有泰国合法驾照并具备10年以上安全驾驶经验，可独立执行各类外勤与现场考察调度任务。">持有泰国合法驾照并具备10年以上安全驾驶经验，可独立执行各类外勤与现场考察调度任务。</p></div><div class="skill-card reveal"><span class="skill-icon">🌐</span><h3>多语日常沟通与跨文化能力</h3><p class="type-text" data-zh="除中缅双语精通外，兼具基础英语与基础泰语的日常无障碍沟通能力，能够从容应对多语言交织的复杂办公及现场生存环境。">除中缅双语精通外，兼具基础英语与基础泰语的日常无障碍沟通能力，能够从容应对多语言交织的复杂办公及现场生存环境。</p></div></div></section>
-
-  <section id="experience"><div class="section-label"><span class="num">02</span><h2 data-zh="专业经历" data-en="PROFESSIONAL EXPERIENCE" data-my="လုပ်ငန်း အတွေ့အကြုံ">专业经历</h2></div><div class="exp-timeline"><div class="exp-item reveal"><div class="exp-company">Asia Excellent Construction Company | 2020 - 2022</div><div class="exp-role" data-zh="中缅现场主管与翻译" data-en="Chinese-Myanmar Interpreter & Site Manager" data-my="တရုတ်-မြန်မာ လုပ်ငန်းခွင်မန်နေဂျာနှင့် စကားပြန်">中缅现场主管与翻译</div><ul class="exp-bullets"><li><span class="type-text" data-zh="多方统筹与现场指挥：直接管理约30名本地施工人员，并统筹砌砖、门窗、水电、装修等分包团队。">多方统筹与现场指挥：直接管理约30名本地施工人员，并统筹砌砖、门窗、水电、装修等分包团队。</span></li><li><span class="type-text" data-zh="进度与物资调度：负责施工进度、现场材料调拨及混凝土浇筑等关键节点的资源配置。">进度与物资调度：负责施工进度、现场材料调拨及混凝土浇筑等关键节点的资源配置。</span></li><li><span class="type-text" data-zh="质量与安全把控：监督施工质量与现场安全，提前解决隐患，并协助中方管理人员化解分包商争议，确保符合甲方交付标准。">质量与安全把控：监督施工质量与现场安全，提前解决隐患，并协助中方管理人员化解分包商争议，确保符合甲方交付标准。</span></li></ul></div><div class="exp-item reveal"><div class="exp-company">Myanmar Communication Network Construction Co., Ltd | 2016 - 2019</div><div class="exp-role" data-zh="通信工程项目经理" data-en="Telecom Engineering Project Manager" data-my="ဆက်သွယ်ရေး အင်ဂျင်နီယာ ပရောဂျက်မန်နေဂျာ">通信工程项目经理</div><ul class="exp-bullets"><li><span class="type-text" data-zh="项目全盘操盘与突围：独立负责总长超110公里的大型通信工程项目（总施工单价大概250万人民币左右），3个月内高效完成交付。">项目全盘操盘与突围：独立负责总长超110公里的大型通信工程项目（总施工单价大概250万人民币左右），3个月内高效完成交付。</span></li><li><span class="type-text" data-zh="大规模团队与设备统筹：现场管理约300名施工人员，调度5台挖掘机、顶管机等重型设备，制定日进度追踪机制突破技术瓶颈。">大规模团队与设备统筹：现场管理约300名施工人员，调度5台挖掘机、顶管机等重型设备，制定日进度追踪机制突破技术瓶颈。</span></li><li><span class="type-text" data-zh="政企军多方协调：独立对接军方、市政、交通部、路管局、电信部及农业部，保障复杂环境下的项目安全推进。">政企军多方协调：独立对接军方、市政、交通部、路管局、电信部及农业部，保障复杂环境下的项目安全推进。</span></li></ul></div><div class="exp-item reveal"><div class="exp-company">CITCC | 2014 - 2015</div><div class="exp-role" data-zh="工程协调助理" data-en="Engineering Coordination Assistant" data-my="အင်ဂျင်နီယာ ညှိနှိုင်းရေး အကူ">工程协调助理</div><ul class="exp-bullets"><li><span class="type-text" data-zh="跨部门协同：协助项目经理与高层推进项目部及多个分支机构的协作，解决运营瓶颈。">跨部门协同：协助项目经理与高层推进项目部及多个分支机构的协作，解决运营瓶颈。</span></li><li><span class="type-text" data-zh="政企外联协助：协助对接市政、交通部、路管局、电信部及农业部，推进关键审批与合规落地。">政企外联协助：协助对接市政、交通部、路管局、电信部及农业部，推进关键审批与合规落地。</span></li><li><span class="type-text" data-zh="文档与后勤支持：负责多站点的工程图纸、采购订单、政府批文归档，并跟进物流与资源分配。">文档与后勤支持：负责多站点的工程图纸、采购订单、政府批文归档，并跟进物流与资源分配。</span></li></ul></div><div class="exp-item reveal"><div class="exp-company" data-zh="协骏玩具厂（中国） | 2007 - 2008">协骏玩具厂（中国） | 2007 - 2008</div><div class="exp-role" data-zh="生产线主管" data-en="Production Line Supervisor" data-my="ထုတ်လုပ်ရေးလိုင်း ကြီးကြပ်ရေးမှူး">生产线主管</div><ul class="exp-bullets"><li><span class="type-text" data-zh="一线团队管理：管理20余人的生产线团队，合理排班并高效达成每日生产目标。">一线团队管理：管理20余人的生产线团队，合理排班并高效达成每日生产目标。</span></li><li><span class="type-text" data-zh="质量监督：严格执行工厂质控措施，从源头降低次品率，把控产品的一致性与高品质输出。">质量监督：严格执行工厂质控措施，从源头降低次品率，把控产品的一致性与高品质输出。</span></li></ul></div></div></section>
-
-  <section class="alt"><div class="section-label"><span class="num">03</span><h2 data-zh="个人总结" data-en="PROFESSIONAL SUMMARY" data-my="ကိုယ်ရေးအကျဉ်းချုပ်">个人总结</h2></div><div class="intro-box reveal"><p class="type-text" data-zh="具备10年以上跨国运营与现场管理经验，母语缅甸语，精通中文。拥有通信基建、建筑工程与工厂生产线管理经验，擅长危机处理、政企军外联、分包商协调及大规模团队统筹（最高管理300余人）。早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格，极强的环境适应力使我能在短时间内掌握新行业知识。在精通中缅双语之余，兼具日常基本的泰语与英语口语交流沟通能力，可完美配合外勤及长期驻场需求。期望能在有潜力的公司稳定扎根，与公司共同成长，提供高效、稳定的领导与支持。">具备10年以上跨国运营与现场管理经验，母语缅甸语，精通中文。拥有通信基建、建筑工程与工厂生产线管理经验，擅长危机处理、政企军外联、分包商协调及大规模团队统筹（最高管理300余人）。早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格，极强的环境适应力使我能在短时间内掌握新行业知识。在精通中缅双语之余，兼具日常基本的泰语与英语口语交流沟通能力，可完美配合外勤及长期驻场需求。期望能在有潜力的公司稳定扎根，与公司共同成长，提供高效、稳定的领导与支持。</p></div></section>
-
-  <section id="contact">
-    <div class="section-label"><span class="num">04</span><h2 data-zh="联系方式" data-en="CONTACT" data-my="ဆက်သွယ်ရန်">联系方式</h2></div>
-    <div class="contact-grid reveal">
-      <a href="tel:0826039244" class="contact-card"><div class="contact-icon">📞</div><div class="contact-info"><label data-zh="电话（点击拨打）" data-en="PHONE (tap to call)" data-my="ဖုန်း (နှိပ်၍ခေါ်ဆိုရန်)">电话（点击拨打）</label><span>0826039244</span></div></a>
-      <a href="https://line.me/ti/p/jonas888999" target="_blank" rel="noopener" class="contact-card"><div class="contact-icon">💬</div><div class="contact-info"><label data-zh="LINE（点击添加）" data-en="LINE (tap to add)" data-my="LINE (နှိပ်၍ပေါင်းထည့်ရန်)">LINE（点击添加）</label><span>jonas888999</span></div></a>
-      <a href="https://maps.google.com/?q=Bangkok,Thailand" target="_blank" rel="noopener" class="contact-card"><div class="contact-icon">📍</div><div class="contact-info"><label data-zh="位置（点击查看地图）" data-en="LOCATION (tap for map)" data-my="တည်နေရာ (မြေပုံကြည့်ရန်)">位置（点击查看地图）</label><span data-zh="泰国·曼谷" data-en="Bangkok, Thailand" data-my="ထိုင်းနိုင်ငံ၊ ဘန်ကောက်">泰国·曼谷</span></div></a>
-      <!-- 新增邮箱卡片，点击发送邮件 -->
-      <a href="mailto:jonas@jtalk.eu.cc" class="contact-card"><div class="contact-icon">✉️</div><div class="contact-info"><label data-zh="邮箱（点击发送）" data-en="EMAIL (click to send)" data-my="အီးမေးလ် (နှိပ်၍ ပို့ရန်)">邮箱（点击发送）</label><span>jonas@jtalk.eu.cc</span></div></a>
-      <div class="contact-card" style="cursor:default;pointer-events:none;"><div class="contact-icon">⚡</div><div class="contact-info"><label data-zh="到岗时间" data-en="AVAILABILITY" data-my="အလုပ်စတင်နိုင်မည့် အချိန်">到岗时间</label><span data-zh="随时可以上岗" data-en="Immediately Available" data-my="ချက်ချင်း စတင်နိုင်သည်">随时可以上岗</span></div></div>
+  <section class="alt">
+    <div class="section-label"><span class="num">01</span><h2 data-zh="语言与技能" data-en="LANGUAGES & SKILLS" data-my="ဘာသာစကားနှင့် ကျွမ်းကျင်မှုများ">语言与技能</h2></div>
+    <div class="lang-grid reveal">
+      <div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="缅甸语" data-en="Burmese" data-my="မြန်မာဘာသာစကား">缅甸语</div><div class="lang-level" data-zh="母语" data-en="Native" data-my="မိခင်ဘာသာစကား">母语</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:100%;width:0"></div></div></div>
+      <div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="中文（普通话）" data-en="Chinese (Mandarin)" data-my="တရုတ် (မန်ဒရင်း)">中文（普通话）</div><div class="lang-level" data-zh="流利 / 商务交涉" data-en="Fluent / Business Negotiation" data-my="ကျွမ်းကျင် / စီးပွားရေးဆိုင်ရာ ဆွေးနွေးညှိနှိုင်းမှု">流利 / 商务交涉</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:95%;width:0"></div></div></div>
+      <div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="泰语" data-en="Thai" data-my="ထိုင်းဘာသာစကား">泰语</div><div class="lang-level" data-zh="基础日常沟通" data-en="Basic Conversational" data-my="အခြေခံ ဆက်သွယ်ပြောဆိုနိုင်မှု">基础日常沟通</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:45%;width:0"></div></div></div>
+      <div class="lang-item"><div class="lang-header"><div class="lang-name" data-zh="英语" data-en="English" data-my="အင်္ဂလိပ်ဘာသာစကား">英语</div><div class="lang-level" data-zh="基础日常沟通" data-en="Basic Conversational" data-my="အခြေခံ ဆက်သွယ်ပြောဆိုနိုင်မှု">基础日常沟通</div></div><div class="lang-bar"><div class="lang-fill" style="--target-width:40%;width:0"></div></div></div>
     </div>
-    <div class="cv-download-box reveal"><a href="JONAS_CV_Update.pdf" download="JONAS_CV_Update.pdf" class="cv-download-card-btn"><div class="cv-download-left"><div class="cv-download-icon">📄</div><div><div class="cv-title" data-zh="下载完整版 PDF 简历" data-en="Download Full CV PDF" data-my="CV အပြည့်အစုံကို ဒေါင်းလုဒ်လုပ်ရန်">下载完整版 PDF 简历</div><div class="cv-sub">LiEnwei_CV_Bilingual.pdf</div></div></div><div class="cv-action-btn"><span>⬇</span> <span data-zh="立即下载" data-en="Download" data-my="ဒေါင်းလုဒ်">立即下载</span></div></a></div>
+    <div class="skills-grid" style="margin-top:56px">
+      <div class="skill-card reveal"><span class="skill-icon"><i class="fas fa-bell"></i></span><h3 data-zh="危机攻坚与问题解决" data-en="Crisis Management & Problem Solving" data-my="အကျပ်အတည်းဖြေရှင်းခြင်းနှင့် ပြဿနာဖြေရှင်းနိုင်စွမ်း">危机攻坚与问题解决</h3><p class="type-text" data-zh="在复杂的多边协作环境中快速定位问题，出具解决方案，确保工程与业务免受突发事件影响。" data-en="Quickly identify issues in complex, multilateral collaborative environments and provide effective solutions to protect engineering and business operations from unexpected disruptions." data-my="ရှုပ်ထွေးသော ဘက်စုံပူးပေါင်းလုပ်ဆောင်ရသည့် ပတ်ဝန်းကျင်များတွင် ပြဿနာများကို လျင်မြန်စွာဖော်ထုတ်နိုင်ပြီး မမျှော်လင့်ထားသော အခြေအနေများကြောင့် လုပ်ငန်းနှင့် စီမံကိန်းများ ထိခိုက်မှုမရှိစေရန် အဖြေရှာဆောင်ရွက်နိုင်ခြင်း။">在复杂的多边协作环境中快速定位问题，出具解决方案，确保工程与业务免受突发事件影响。</p></div>
+      <div class="skill-card reveal"><span class="skill-icon"><i class="fas fa-hard-hat"></i></span><h3 data-zh="项目与现场操盘" data-en="Project & Site Management" data-my="စီမံကိန်းနှင့် ဆိုက်စီမံခန့်ခွဲမှု">项目与现场操盘</h3><p class="type-text" data-zh="深耕建筑施工、通信基建等领域，精通分包商统筹协作与项目全流程推进落地。" data-en="Deep expertise in construction and telecommunications infrastructure, excelling in subcontractor coordination and driving end-to-end project execution." data-my="ဆောက်လုပ်ရေးနှင့် ဆက်သွယ်ရေး အခြေခံအဆောက်အအုံ လုပ်ငန်းများတွင် ကျွမ်းကျင်မှုရှိပြီး ကန်ထရိုက်ခွဲများနှင့် ညှိနှိုင်းဆောင်ရွက်ခြင်း၊ စီမံကိန်းတစ်ခုလုံးကို အစမှအဆုံးတိုင် အကောင်အထည်ဖော်ဆောင်ရွက်နိုင်ခြင်း။">深耕建筑施工、通信基建等领域，精通分包商统筹协作与项目全流程推进落地。</p></div>
+      <div class="skill-card reveal"><span class="skill-icon"><i class="fas fa-landmark"></i></span><h3 data-zh="政企军公关与外联" data-en="Public Relations & Government/Military Liaison" data-my="အစိုးရ၊ စစ်ဘက်ဆိုင်ရာ ပြည်သူ့ဆက်ဆံရေးနှင့် ပြင်ပဆက်သွယ်ရေး">政企军公关与外联</h3><p class="type-text" data-zh="具备丰富的外联对接经验，可高效对接军方、市政及各大国家部委，跨越行政审批障碍。" data-en="Extensive experience in external affairs, efficiently collaborating with military, municipal, and national government ministries to navigate administrative and regulatory hurdles." data-my="ပြင်ပအဖွဲ့အစည်းများနှင့် ဆက်သွယ်ရာတွင် အတွေ့အကြုံများစွာရှိပြီး အုပ်ချုပ်ရေးနှင့် လုပ်ထုံးလုပ်နည်းဆိုင်ရာ အတားအဆီးများကို ကျော်လွှားရန် စစ်ဘက်၊ စည်ပင်သာယာရေးနှင့် နိုင်ငံတော်ဝန်ကြီးဌာနများနှင့် ထိရောက်စွာ ချိတ်ဆက်ဆောင်ရွက်နိုင်ခြင်း။">具备丰富的外联对接经验，可高效对接军方、市政及各大国家部委，跨越行政审批障碍。</p></div>
+      <div class="skill-card reveal"><span class="skill-icon"><i class="fas fa-users"></i></span><h3 data-zh="运营领导力 (300+ 团队)" data-en="Operations Leadership (300+ Team)" data-my="လုပ်ငန်းလည်ပတ်မှု ဦးဆောင်နိုင်စွမ်း (လူ ၃၀၀+ အဖွဲ့)">运营领导力 (300+ 团队)</h3><p class="type-text" data-zh="具备大规模劳动力领导经验（最高统筹300+人员），精准进行资源调拨及质量、安全把控。" data-en="Proven track record in large-scale workforce management (overseeing up to 300+ personnel), with precise resource allocation and strict quality/safety control." data-my="လူအင်အားအများအပြား (ဝန်ထမ်း ၃၀၀ ကျော်အထိ) စီမံခန့်ခွဲရာတွင် အတွေ့အကြုံရှိပြီး အရင်းအမြစ်များကို တိကျစွာခွဲဝေချထားခြင်း၊ အရည်အသွေးနှင့် လုံခြုံရေးကို တင်းကျပ်စွာ ထိန်းချုပ်နိုင်ခြင်း။">具备大规模劳动力领导经验（最高统筹300+人员），精准进行资源调拨及质量、安全把控。</p></div>
+      <div class="skill-card reveal"><span class="skill-icon"><i class="fas fa-car"></i></span><h3 data-zh="机动外勤与通勤" data-en="Mobility & Field Dispatch" data-my="နယ်ဆင်းသွားလာနိုင်မှုနှင့် ခရီးသွားလာရေး">机动外勤与通勤</h3><p class="type-text" data-zh="持有泰国合法驾照并具备10年以上安全驾驶经验，可独立执行各类外勤与现场考察调度任务。" data-en="Hold a valid Thai driver's license with over 10 years of safe driving experience, capable of independently executing various field missions and site inspection logistics." data-my="တရားဝင် ထိုင်းယာဉ်မောင်းလိုင်စင်ရှိပြီး ၁၀ နှစ်ကျော်ကြာ အန္တရာယ်ကင်းရှင်းစွာ မောင်းနှင်နိုင်သည့် အတွေ့အကြုံရှိကာ ကွင်းဆင်းတာဝန်များနှင့် ဆိုက်စစ်ဆေးရေးလုပ်ငန်းများကို သီးခြားလွတ်လပ်စွာ ဆောင်ရွက်နိုင်ခြင်း။">持有泰国合法驾照并具备10年以上安全驾驶经验，可独立执行各类外勤与现场考察调度任务。</p></div>
+      <div class="skill-card reveal"><span class="skill-icon"><i class="fas fa-globe-asia"></i></span><h3 data-zh="多语日常沟通与跨文化能力" data-en="Multilingual Communication & Cross-Cultural Competency" data-my="ဘာသာစကားမျိုးစုံ ဆက်သွယ်ပြောဆိုနိုင်မှုနှင့် ယဉ်ကျေးမှုပေါင်းစုံ နားလည်နိုင်စွမ်း">多语日常沟通与跨文化能力</h3><p class="type-text" data-zh="除中缅双语精通外，兼具基础英语与基础泰语的日常无障碍沟通能力，能够从容应对多语言交织的复杂办公及现场生存环境。" data-en="In addition to fluency in Chinese and Burmese, possess basic conversational skills in English and Thai. Adept at navigating complex, multi-lingual office and on-site environments with ease." data-my="တရုတ်နှင့် မြန်မာဘာသာစကားကို ကျွမ်းကျင်စွာ ပြောဆိုနိုင်သည့်အပြင် အင်္ဂလိပ်နှင့် ထိုင်းဘာသာစကားတို့ကိုလည်း အခြေခံ ဆက်သွယ်ပြောဆိုနိုင်ပါသည်။ ဘာသာစကားမျိုးစုံ အသုံးပြုရသော ရှုပ်ထွေးသည့် ရုံးတွင်းနှင့် ဆိုက်တွင်း လုပ်ငန်းခွင်အခြေအနေများကို လွယ်ကူချောမွေ့စွာ ကိုင်တွယ်ဖြေရှင်းနိုင်ခြင်း။">除中缅双语精通外，兼具基础英语与基础泰语的日常无障碍沟通能力，能够从容应对多语言交织的复杂办公及现场生存环境。</p></div>
+    </div>
   </section>
 
-  <section id="comments" class="alt"><div class="section-label"><span class="num">05</span><h2 data-zh="留言板" data-en="COMMENTS" data-my="မှတ်ချက်များ">留言板</h2></div><div class="comment-container reveal"><script src="https://giscus.app/client.js" data-repo="minnyinyioo/jonas-cv" data-repo-id="R_kgDOR_r_CQ" data-category="Announcements" data-category-id="DIC_kwDOR_r_Cc4C6wY6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script></div></section>
+  <section id="experience">
+    <div class="section-label"><span class="num">02</span><h2 data-zh="专业经历" data-en="PROFESSIONAL EXPERIENCE" data-my="လုပ်ငန်းအတွေ့အကြုံများ">专业经历</h2></div>
+    <div class="exp-timeline">
+      <div class="exp-item reveal"><div class="exp-company">Asia Excellent Construction Company | 2020 - 2022</div><div class="exp-role" data-zh="中缅现场主管与翻译" data-en="Chinese-Burmese Site Supervisor & Translator" data-my="ဆိုက်ကြီးကြပ်ရေးမှူးနှင့် ဘာသာပြန်">中缅现场主管与翻译</div><ul class="exp-bullets"><li><span class="type-text" data-zh="多方统筹与现场指挥：直接管理约30名本地施工人员，并统筹砌砖、门窗、水电、装修等分包团队。" data-en="Multilateral Coordination & On-site Command: Directly managed approximately 30 local construction workers and coordinated various subcontractor teams, including bricklaying, doors/windows, plumbing/electrical, and finishing." data-my="ဘက်စုံပူးပေါင်းဆောင်ရွက်မှုနှင့် ဆိုက်တွင်း ညွှန်ကြားမှု - ဒေသခံ ဆောက်လုပ်ရေးလုပ်သား ၃၀ ခန့်ကို တိုက်ရိုက်စီမံကွပ်ကဲခဲ့ပြီး ပန်းရန်၊ တံခါးနှင့် ပြတင်းပေါက်၊ ရေပိုက်နှင့် လျှပ်စစ်၊ အချောကိုင်လုပ်ငန်းစသည့် ကန်ထရိုက်ခွဲအဖွဲ့များကို ညှိနှိုင်းဆောင်ရွက်ပေးခြင်း။">多方统筹与现场指挥：直接管理约30名本地施工人员，并统筹砌砖、门窗、水电、装修等分包团队。</span></li><li><span class="type-text" data-zh="进度与物资调度：负责施工进度、现场材料调拨及混凝土浇筑等关键节点的资源配置。" data-en="Scheduling & Material Dispatch: Handled critical resource allocation, including construction progress tracking, site material logistics, and concrete pouring schedules." data-my="လုပ်ငန်းတိုးတက်မှုနှင့် ပစ္စည်းများ ဖြန့်ဝေချထားခြင်း - ဆောက်လုပ်ရေးလုပ်ငန်း တိုးတက်မှုအခြေအနေ၊ ဆိုက်တွင်း ပစ္စည်းများ သယ်ယူပို့ဆောင်ရေးနှင့် ကွန်ကရစ်လောင်းခြင်း အစီအစဉ်များအပါအဝင် အဓိက အရင်းအမြစ် ခွဲဝေချထားမှုများကို တာဝန်ယူဆောင်ရွက်ခြင်း။">进度与物资调度：负责施工进度、现场材料调拨及混凝土浇筑等关键节点的资源配置。</span></li><li><span class="type-text" data-zh="质量与安全把控：监督施工质量与现场安全，提前解决隐患，并协助中方管理人员化解分包商争议，确保符合甲方交付标准。" data-en="Quality & Safety Control: Supervised construction quality and site safety, proactively addressing potential hazards. Assisted Chinese management in resolving subcontractor disputes to ensure compliance with client delivery standards." data-my="အရည်အသွေးနှင့် လုံခြုံရေး ထိန်းချုပ်မှု - ဆောက်လုပ်ရေးအရည်အသွေးနှင့် ဆိုက်တွင်းလုံခြုံရေးကို ကြီးကြပ်ကွပ်ကဲပြီး ဖြစ်နိုင်ခြေရှိသော အန္တရာယ်များကို ကြိုတင်ဖြေရှင်းခြင်း။ ကလိုင်းယင့်၏ စံချိန်စံညွှန်းများနှင့် ကိုက်ညီစေရန် ကန်ထရိုက်ခွဲများအကြား အငြင်းပွားမှုများမရှိစေရန်နှစ်ဖက်ကြားနှင့် တရုတ်လူမျိုးစီမံခန့်ခွဲသူများအား ဘာသာစကားကိုတိကျစွာဖြင့်ကူညီဖြေရှင်းပေးခြင်း။">质量与安全把控：监督施工质量与现场安全，提前解决隐患，并协助中方管理人员化解分包商争议，确保符合甲方交付标准。</span></li></ul></div>
+      <div class="exp-item reveal"><div class="exp-company">Myanmar Communication Network Construction Co., Ltd | 2016 - 2019</div><div class="exp-role" data-zh="通信工程项目经理" data-en="Telecommunications Engineering Project Manager" data-my="ဆက်သွယ်ရေး အင်ဂျင်နီယာ စီမံကိန်းမန်နေဂျာ">通信工程项目经理</div><ul class="exp-bullets"><li><span class="type-text" data-zh="项目全盘操盘与突围：独立负责总长超110公里的大型通信工程项目（总施工单价大概250万人民币左右），3个月内高效完成交付。" data-en="End-to-End Project Execution: Independently spearheaded a major telecommunications project spanning over 110 kilometers (total construction value of approximately 2.5 million RMB), ensuring high-efficiency delivery within 3 months." data-my="စီမံကိန်း အစမှအဆုံး အကောင်အထည်ဖော်ခြင်း - အရှည် ကီလိုမီတာ ၁၁၀ ကျော်ရှိသော အကြီးစား ဆက်သွယ်ရေးစီမံကိန်း (ခန့်မှန်းခြေ ဆောက်လုပ်ရေးတန်ဖိုး ယွမ် ၂.၅ သန်းခန့်) ကို ၃ လအတွင်း အောင်မြင်စွာ ပြီးစီးအောင် သီးခြားလွတ်လပ်စွာ ဦးဆောင်လုပ်ကိုင်ခဲ့ခြင်း။">项目全盘操盘与突围：独立负责总长超110公里的大型通信工程项目（总施工单价大概250万人民币左右），3个月内高效完成交付。</span></li><li><span class="type-text" data-zh="大规模团队与设备统筹：现场管理约300名施工人员，调度5台挖掘机、顶管机等重型设备，制定日进度追踪机制突破技术瓶颈。" data-en="Large-Scale Team & Equipment Coordination: Managed an on-site workforce of around 300 personnel and dispatched heavy machinery, including 5 excavators and pipe-jacking machines. Developed a daily progress tracking mechanism to overcome technical bottlenecks." data-my="များပြားသောလူဦးရေနှင့် စက်ယန္တရားများအားဘေးကင်းလုံခြုံစွာစီမံခန့်ခွဲဆောင်ရွက်နိုင်ခြင်း - ဆိုက်တွင်းလုပ်သား ၃၀၀ ခန့်ကို စီမံခန့်ခွဲခဲ့ပြီး မြေတူးစက် ၅ စီးနှင့် ပိုက်ဖောက်စက်စသည့် ယန္တရားကြီးများကို ချထားပေးခြင်း။ နည်းပညာပိုင်းဆိုင်ရာ အခက်အခဲများကို ကျော်လွှားရန် နေ့စဉ်လုပ်ငန်းတိုးတက်မှု ခြေရာခံစနစ်ကို ဖန်တီးခဲ့ခြင်း။">大规模团队与设备统筹：现场管理约300名施工人员，调度5台挖掘机、顶管机等重型设备，制定日进度追踪机制突破技术瓶颈。</span></li><li><span class="type-text" data-zh="政企军多方协调：独立对接军方、市政、交通部、路管局、电信部及农业部，保障复杂环境下的项目安全推进。" data-en="Government, Corporate & Military Liaison: Acted as the primary point of contact with the military, municipal authorities, Ministry of Transport, Road Management Bureau, Ministry of Communications, and Ministry of Agriculture to secure safe project advancement in complex environments." data-my="အစိုးရ၊ ကုမ္ပဏီနှင့် စစ်ဘက်ဆိုင်ရာ ညှိနှိုင်းဆောင်ရွက်မှု - ရှုပ်ထွေးသော ပတ်ဝန်းကျင်များတွင် စီမံကိန်းကို ဘေးကင်းလုံခြုံစွာ ရှေ့ဆက်နိုင်ရန် စစ်ဘက်၊ စည်ပင်သာယာ၊ ပို့ဆောင်ရေးဝန်ကြီးဌာန၊ လမ်းဦးစီးဌာန၊ ဆက်သွယ်ရေးဝန်ကြီးဌာနနှင့် စိုက်ပျိုးရေးဝန်ကြီးဌာနတို့နှင့် အဓိက ဦးဆောင်ဆက်သွယ်ညှိနှိုင်းဆောင်ရွက်ခဲ့ခြင်း။">政企军多方协调：独立对接军方、市政、交通部、路管局、电信部及农业部，保障复杂环境下的项目安全推进。</span></li></ul></div>
+      <div class="exp-item reveal"><div class="exp-company">CITCC (China International Telecommunication Construction Corporation) | 2014 - 2015</div><div class="exp-role" data-zh="工程协调助理" data-en="Project Coordination Assistant" data-my="အင်ဂျင်နီယာလုပ်ငန်း ညှိနှိုင်းရေးလက်ထောက်">工程协调助理</div><ul class="exp-bullets"><li><span class="type-text" data-zh="跨部门协同：协助项目经理与高层推进项目部及多个分支机构的协作，解决运营瓶颈。" data-en="Cross-Departmental Synergy: Supported project managers and senior executives in facilitating collaboration between the project department and various branch offices, successfully clearing operational bottlenecks." data-my="ဌာနအချင်းချင်း ပူးပေါင်းဆောင်ရွက်မှု - စီမံကိန်းဌာနနှင့် ရုံးခွဲအသီးသီးအကြား ပူးပေါင်းဆောင်ရွက်မှုကို အဆင်ပြေချောမွေ့စေရန် စီမံကိန်းမန်နေဂျာများနှင့် အထက်အရာရှိများကို ကူညီပံ့ပိုးပေးပြီး လုပ်ငန်းလည်ပတ်မှုဆိုင်ရာ အခက်အခဲများကို ဖြေရှင်းပေးခြင်း။">跨部门协同：协助项目经理与高层推进项目部及多个分支机构的协作，解决运营瓶颈。</span></li><li><span class="type-text" data-zh="政企外联协助：协助对接市政、交通部、路管局、电信部及农业部，推进关键审批与合规落地。" data-en="Government & Corporate Outreach: Assisted in liaising with municipal bodies, the Ministry of Transport, Road Management Bureau, Ministry of Communications, and Ministry of Agriculture to expedite critical approvals and ensure compliance." data-my="အစိုးရနှင့် ပြင်ပဆက်သွယ်ရေး အကူအညီ - အရေးကြီးသော ခွင့်ပြုချက်များရရှိရေးနှင့် လုပ်ထုံးလုပ်နည်းများ ကိုက်ညီစေရေးအတွက် စည်ပင်သာယာ၊ ပို့ဆောင်ရေးဝန်ကြီးဌာန၊ လမ်းဦးစီးဌာန၊ ဆက်သွယ်ရေးဝန်ကြီးဌာနနှင့် စိုက်ပျိုးရေးဝန်ကြီးဌာနတို့နှင့် ဆက်သွယ်ညှိနှိုင်းရာတွင် ကူညီပေးခြင်း။">政企外联协助：协助对接市政、交通部、路管局、电信部及农业部，推进关键审批与合规落地。</span></li><li><span class="type-text" data-zh="文档与后勤支持：负责多站点的工程图纸、采购订单、政府批文归档，并跟进物流与资源分配。" data-en="Documentation & Logistical Support: Handled the archiving of engineering blueprints, purchase orders, and government approvals across multiple sites, while tracking logistics and resource distribution." data-my="မှတ်တမ်းနှင့် ထောက်ပံ့ပို့ဆောင်ရေး - ဆိုက်အသီးသီးရှိ အင်ဂျင်နီယာ ပုံစံထုတ်များ၊ ဝယ်ယူရေး အော်ဒါများနှင့် အစိုးရ ခွင့်ပြုချက်စာရွက်စာတမ်းများကို စနစ်တကျ သိမ်းဆည်းပေးခြင်းနှင့် ထောက်ပံ့ပို့ဆောင်ရေးနှင့် အရင်းအမြစ် ခွဲဝေမှုများကို ခြေရာခံစောင့်ကြည့်ခြင်း။">文档与后勤支持：负责多站点的工程图纸、采购订单、政府批文归档，并跟进物流与资源分配。</span></li></ul></div>
+      <div class="exp-item reveal"><div class="exp-company" data-zh="协骏玩具厂（中国） | 2007 - 2008" data-en="Xiejun Toy Factory (China) | 2007 - 2008" data-my="Xiejun ကစားစရာစက်ရုံ (တရုတ်နိုင်ငံ) | ၂၀၀၇ - ၂၀၀၈">协骏玩具厂（中国） | 2007 - 2008</div><div class="exp-role" data-zh="生产线主管" data-en="Production Line Supervisor" data-my="ထုတ်လုပ်မှုလိုင်း ကြီးကြပ်ရေးမှူး">生产线主管</div><ul class="exp-bullets"><li><span class="type-text" data-zh="一线团队管理：管理20余人的生产线团队，合理排班并高效达成每日生产目标。" data-en="Frontline Team Management: Led a production line team of over 20 employees, optimizing shift schedules to efficiently meet daily production targets." data-my="ရှေ့တန်းအဖွဲ့ စီမံခန့်ခွဲမှု - ဝန်ထမ်း ၂၀ ကျော်ပါဝင်သော ထုတ်လုပ်မှုလိုင်းအဖွဲ့ကို ဦးဆောင်ခဲ့ပြီး နေ့စဉ် ထုတ်လုပ်မှုပစ်မှတ်များ ပြည့်မီစေရန် အလုပ်ချိန်များကို စနစ်တကျ စီစဉ်ပေးခြင်း။">一线团队管理：管理20余人的生产线团队，合理排班并高效达成每日生产目标。</span></li><li><span class="type-text" data-zh="质量监督：严格执行工厂质控措施，从源头降低次品率，把控产品的一致性与高品质输出。" data-en="Quality Supervision: Strictly enforced factory quality control measures, reducing defect rates at the source and ensuring consistent, high-quality product output." data-my="အရည်အသွေး ကြီးကြပ်မှု - စက်ရုံ၏ အရည်အသွေး ထိန်းချုပ်မှုအစီအမံများကို တင်းကျပ်စွာ အကောင်အထည်ဖော်ပြီး အရင်းအမြစ်မှစ၍ ချို့ယွင်းချက်ရာခိုင်နှုန်းကို လျှော့ချကာ အရည်အသွေးမြင့်မားသော ထုတ်ကုန်များကို တသမတ်တည်း ထုတ်လုပ်နိုင်စေရန် ထိန်းချုပ်ပေးခြင်း။">质量监督：严格执行工厂质控措施，从源头降低次品率，把控产品的一致性与高品质输出。</span></li></ul></div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="section-label"><span class="num">03</span><h2 data-zh="个人总结" data-en="PROFESSIONAL SUMMARY" data-my="ကိုယ်ရေးအကျဉ်း">个人总结</h2></div>
+    <div class="intro-box reveal"><p class="type-text" data-zh="具备10年以上跨国运营与现场管理经验，母语缅甸语，精通中文。拥有通信基建、建筑工程与工厂生产线管理经验，擅长危机处理、政企军外联、分包商协调及大规模团队统筹（最高管理300余人）。早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格，极强的环境适应力使我能在短时间内掌握新行业知识。在精通中缅双语之余，兼具日常基本的泰语与英语口语交流沟通能力，可完美配合外勤及长期驻场需求。期望能在有潜力的公司稳定扎根，与公司共同成长，提供高效、稳定的领导与支持。" data-en="With over 10 years of experience in cross-border operations and on-site management, I am a native Burmese speaker with absolute fluency in Mandarin Chinese. I have a robust background in telecommunications infrastructure, construction, and factory production line management. I excel in crisis intervention, government/military public relations, subcontractor coordination, and large-scale team management (having successfully directed teams of over 300 personnel). My early experiences living independently forged a resilient, hardworking character, while my strong adaptability allows me to master new industry knowledge swiftly. In addition to my bilingual proficiency in Chinese and Burmese, I possess basic conversational skills in both English and Thai, making me perfectly suited for fieldwork and long-term on-site assignments. I am eager to establish stable roots in a company with strong potential, growing alongside the organization while delivering highly efficient and steadfast leadership and support." data-my="လုပ်ငန်းလည်ပတ်မှုနှင့် ဆိုက်တွင်းစီမံခန့်ခွဲမှုတို့တွင် အတွေ့အကြုံ ၁၀ နှစ်ကျော်ရှိပြီး မိခင်ဘာသာစကားမှာ မြန်မာဖြစ်ကာ တရုတ်ဘာသာစကား (မန်ဒရင်း) ကို ကျွမ်းကျင်စွာ ပြောဆိုနိုင်ပါသည်။ ဆက်သွယ်ရေး အခြေခံအဆောက်အအုံ၊ ဆောက်လုပ်ရေးလုပ်ငန်းနှင့် စက်ရုံထုတ်လုပ်မှုလိုင်း စီမံခန့်ခွဲခြင်းတို့တွင် ခိုင်မာသော အတွေ့အကြုံများရှိပါသည်။ အကျပ်အတည်းဖြေရှင်းခြင်း၊ အစိုးရနှင့် စစ်ဘက်ဆိုင်ရာ ပြည်သူ့ဆက်ဆံရေး၊ ကန်ထရိုက်ခွဲများနှင့် ညှိနှိုင်းဆောင်ရွက်ခြင်းနှင့် များပြားသောလူဦးရေနှင့်အဖွဲ့အစည်းများ စီမံခန့်ခွဲခြင်း (ဝန်ထမ်း ၃၀၀ ကျော်အထိ ဦးဆောင်ခဲ့ဖူးသည်) တို့ကိုဦးဆောင်လုပ်ကိုင်သောအတွေ့အကြုံရှိပါသည်။ ငယ်ရွယ်စဉ်ကတည်းကပင်ကိုယ့်ဒူးကိုယ်ချွန်နေထိုင်ခဲ့ရမှုကြောင့် ကြံ့ခိုင်ပြီး ကြိုးစားအားထုတ်လိုစိတ်ရှိကာမည်သည့်အခက်အခဲမည်သည့်ပတ်ဝန်းကျင်အသစ်နှင့်မဆိုလိုက်လျောညီထွေမှုဖြစ်အောင် နေထိုင်နိုင်စွမ်းရှိပြီးလုပ်ငန်းနယ်ပယ်အသစ်များ၏ အသိပညာများကို အချိန်တိုအတွင်း လေ့လာသင်ယူနိုင်စွမ်းလည်းရှိပါသည်။တရုတ်-မြန်မာ ဘာသာစကား ကျွမ်းကျင်မှုအပြင် အင်္ဂလိပ်နှင့် ထိုင်းဘာသာစကားတို့ကိုလည်း အခြေခံ ဆက်သွယ်ပြောဆိုနိုင်စွမ်းရှိသောကြောင့် နယ်ဆင်းတာဝန်များအပြင်မည်သည့်တာဝန်မျိုးမဆိုတိကျစွာဦးစီးဆောင်ရွက်နိုင်ပါသည်။။ ရေရှည်တိုးတက်မှုရှိပြီးအနာဂတ်အတွက်အလားအလာကောင်းသောကုမ္ပဏီနှင့်တည်ငြိမ်စွာ အခြေချလုပ်ကိုင်နိုင်ပြီး၊ကုမ္ပဏီနှင့်အတူ တိုးတက်အောင်မြင်ကာ ထိရောက်မြန်ဆန်ပြီး တည်ငြိမ်သော ဦးဆောင်မှုနှင့် ပံ့ပိုးကူညီမှုများကို ပေးစွမ်းလိုပါသည်။">具备10年以上跨国运营与现场管理经验，母语缅甸语，精通中文。拥有通信基建、建筑工程与工厂生产线管理经验，擅长危机处理、政企军外联、分包商协调及大规模团队统筹（最高管理300余人）。早年的独立生活经历造就了我吃苦耐劳、坚韧不拔的性格，极强的环境适应力使我能在短时间内掌握新行业知识。在精通中缅双语之余，兼具日常基本的泰语与英语口语交流沟通能力，可完美配合外勤及长期驻场需求。期望能在有潜力的公司稳定扎根，与公司共同成长，提供高效、稳定的领导与支持。</p></div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label"><span class="num">04</span><h2 data-zh="联系方式" data-en="CONTACT INFORMATION" data-my="ဆက်သွယ်ရန် အချက်အလက်များ">联系方式</h2></div>
+    <div class="contact-grid reveal">
+      <a href="tel:0826039244" class="contact-card"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div class="contact-info"><label data-zh="电话（点击拨打）" data-en="PHONE (click to call)" data-my="ဖုန်း (ခေါ်ဆိုရန်နှိပ်ပါ)">电话（点击拨打）</label><span>0826039244</span></div></a>
+      <a href="https://line.me/ti/p/jonas888999" target="_blank" rel="noopener" class="contact-card"><div class="contact-icon"><i class="fab fa-line"></i></div><div class="contact-info"><label data-zh="LINE（点击添加）" data-en="LINE (click to add)" data-my="LINE (အက်ဒ်ရန်နှိပ်ပါ)">LINE（点击添加）</label><span>jonas888999</span></div></a>
+      <a href="https://maps.google.com/?q=Bangkok,Thailand" target="_blank" rel="noopener" class="contact-card"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-info"><label data-zh="位置（点击查看地图）" data-en="LOCATION (click for map)" data-my="တည်နေရာ (မြေပုံကြည့်ရန်နှိပ်ပါ)">位置（点击查看地图）</label><span data-zh="泰国·曼谷" data-en="Bangkok, Thailand" data-my="ဘန်ကောက်၊ ထိုင်းနိုင်ငံ">泰国·曼谷</span></div></a>
+      <a href="mailto:jonas@jtalk.eu.cc" class="contact-card"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-info"><label data-zh="邮箱（点击发送）" data-en="EMAIL (click to send)" data-my="အီးမေးလ် (ပေးပို့ရန်နှိပ်ပါ)">邮箱（点击发送）</label><span>jonas@jtalk.eu.cc</span></div></a>
+      <div class="contact-card" style="cursor:default;pointer-events:none;"><div class="contact-icon"><i class="fas fa-bolt"></i></div><div class="contact-info"><label data-zh="到岗时间" data-en="AVAILABILITY" data-my="တာဝန်ထမ်းဆောင်နိုင်ချိန်">到岗时间</label><span data-zh="随时可以上岗" data-en="Available to start immediately" data-my="အချိန်မရွေး စတင်လုပ်ကိုင်နိုင်ပါသည်">随时可以上岗</span></div></div>
+    </div>
+    <div class="cv-download-box reveal"><a href="JONAS_CV_Update.pdf" download="JONAS_CV_Update.pdf" class="cv-download-card-btn"><div class="cv-download-left"><div class="cv-download-icon"><i class="fas fa-file-pdf"></i></div><div><div class="cv-title" data-zh="下载完整版 PDF 简历" data-en="Download Full PDF Resume" data-my="ကိုယ်ရေးရာဇဝင် အပြည့်အစုံ PDF ဒေါင်းလုဒ်ဆွဲရန်">下载完整版 PDF 简历</div><div class="cv-sub">LiEnwei_CV_Bilingual.pdf</div></div></div><div class="cv-action-btn"><i class="fas fa-arrow-down"></i> <span data-zh="立即下载" data-en="Download Now" data-my="ယခုဒေါင်းလုဒ်ဆွဲရန်">立即下载</span></div></a></div>
+  </section>
+
+  <section id="comments" class="alt">
+    <div class="section-label"><span class="num">05</span><h2 data-zh="留言板" data-en="MESSAGE BOARD" data-my="မှတ်ချက်ပေးရန် နေရာ">留言板</h2></div>
+    <div class="comment-container reveal">
+      <script src="https://giscus.app/client.js" data-repo="minnyinyioo/jonas-cv" data-repo-id="R_kgDOR_r_CQ" data-category="Announcements" data-category-id="DIC_kwDOR_r_Cc4C6wY6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="footer-text">© 2026 李恩伟 · JONAS LI</div>
-  <div class="footer-text" data-zh="个人简历 · 曼谷" data-en="Personal Resume · Bangkok" data-my="ကိုယ်ရေးရာဇဝင် · ဘန်ကောက်">个人简历 · 曼谷</div>
-  <div class="footer-stats"><span id="busuanzi_container_site_pv" style="display:none;"><span data-zh="👁️ 历史总访问：" data-en="👁️ Total Views: " data-my="👁️ ကြည့်ရှုသူ စုစုပေါင်း: ">👁️ 历史总访问：</span><span id="busuanzi_value_site_pv"></span></span><span class="stat-divider">|</span><span class="realtime-stat"><span data-zh="🟢 当前实时在线：" data-en="🟢 Online Now: " data-my="🟢 လက်ရှိ အွန်လိုင်း: ">🟢 当前实时在线：</span><span class="wau-widget"><script id="_wau6zq">var _wau = _wau || []; _wau.push(["small", "jonascv2026", "6zq"]);</script><script async src="//waust.at/s.js"></script></span></span></div>
-  <div class="footer-warning"><span data-zh="⚠️ 严正声明：诈骗、非法活动及人贩子勿扰！盗用或贩卖本人资料必追究法律责任。" data-en="⚠️ WARNING: Scammers & human traffickers keep away! Identity theft or data selling will be strictly prosecuted." data-my="⚠️ သတိပေးချက် - လိမ်လည်သူများ၊ တရားမဝင်လုပ်ငန်းများနှင့် လူကုန်ကူးသူများ အဆက်အသွယ်မလုပ်ပါနှင့်။ အချက်အလက် ခိုးယူခြင်း သို့မဟုတ် ရောင်းချခြင်းကို ဥပဒေအရ အရေးယူမည်။">⚠️ 严正声明：诈骗、非法活动及人贩子勿扰！盗用或贩卖本人资料必追究法律责任。</span></div>
+  <div class="footer-text" data-zh="个人简历 · 曼谷" data-en="Resume · Bangkok" data-my="ကိုယ်ရေးရာဇဝင် · ဘန်ကောက်">个人简历 · 曼谷</div>
+  <div class="footer-stats">
+    <span id="busuanzi_container_site_pv" style="display:none;"><i class="fas fa-eye"></i> <span data-zh="历史总访问：" data-en="Total Historical Visits: " data-my="စုစုပေါင်း ဝင်ရောက်ကြည့်ရှုသူအရေအတွက်: ">历史总访问：</span><span id="busuanzi_value_site_pv"></span></span>
+    <span class="stat-divider">|</span>
+    <span class="realtime-stat"><i class="fas fa-circle" style="color: #0f0; font-size: 8px; vertical-align: middle;"></i> <span data-zh="当前实时在线：" data-en="Current Active Visitors: " data-my="လက်ရှိ ဝင်ရောက်ကြည့်ရှုနေသူအရေအတွက်: ">当前实时在线：</span><span class="wau-widget"><script id="_wau6zq">var _wau = _wau || []; _wau.push(["small", "jonascv2026", "6zq"]);</script><script async src="//waust.at/s.js"></script></span></span>
+  </div>
+  <div class="footer-warning"><i class="fas fa-triangle-exclamation"></i> <span data-zh="⚠️ 严正声明：诈骗、非法活动及人贩子勿扰！盗用或贩卖本人资料必追究法律责任。" data-en="⚠️ Strict Disclaimer: Scammers, illegal activities, and human traffickers do not disturb! Legal action will be taken against anyone misappropriating or selling my personal information." data-my="⚠️ ပြင်းထန်သော သတိပေးချက် - လိမ်လည်သူများ၊ တရားမဝင်လုပ်ငန်းများနှင့် လူကုန်ကူးသူများ လာရောက်မနှောင့်ယှက်ပါရန်။ ကျွန်ုပ်၏ ကိုယ်ရေးကိုယ်တာအချက်အလက်များကို ခွင့်ပြုချက်မရှိဘဲ အသုံးပြုခြင်း သို့မဟုတ် ရောင်းချခြင်းပြုလုပ်ပါက တရားဥပဒေအရ အရေးယူမည်ဖြစ်သည်။">⚠️ 严正声明：诈骗、非法活动及人贩子勿扰！盗用或贩卖本人资料必追究法律责任。</span></div>
 </footer>
 
 <script>
@@ -645,7 +681,8 @@ footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   function setLang(lang) { htmlEl.lang = lang; document.querySelectorAll('[data-zh]').forEach(el => { let val = el.getAttribute('data-'+lang); if (val) { if (el.classList.contains('type-text') && el.getAttribute('data-typing-done') === "true") { el.textContent = ''; el.setAttribute('data-typing','true'); let i=0; clearInterval(el.typeInterval); el.typeInterval = setInterval(()=>{ el.textContent += val.charAt(i); i++; if(i>=val.length){ clearInterval(el.typeInterval); el.setAttribute('data-typing','false'); } },15); } else { el.textContent = val; } } }); }
   const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); e.target.querySelectorAll('.lang-fill').forEach(b => b.classList.add('animate')); e.target.querySelectorAll('.type-text').forEach(el => { if(el.getAttribute('data-typing-done') !== "true"){ el.setAttribute('data-typing-done',"true"); el.setAttribute('data-typing','true'); let curLang = htmlEl.lang || 'zh'; let text = el.getAttribute('data-'+curLang) || el.textContent; el.textContent = ''; let i=0; clearInterval(el.typeInterval); el.typeInterval = setInterval(()=>{ el.textContent += text.charAt(i); i++; if(i>=text.length){ clearInterval(el.typeInterval); el.setAttribute('data-typing','false'); } },15); } }); } }); }, { threshold:0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  document.querySelectorAll('.lang-grid').forEach(el => new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.querySelectorAll('.lang-fill').forEach(b => b.classList.add('animate')); }); }, { threshold:0.3 }).observe(el));
+  const langObs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.querySelectorAll('.lang-fill').forEach(b => b.classList.add('animate')); }); }, { threshold:0.3 });
+  document.querySelectorAll('.lang-grid').forEach(el => langObs.observe(el));
 </script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
